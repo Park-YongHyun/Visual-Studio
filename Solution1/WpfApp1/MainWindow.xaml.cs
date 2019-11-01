@@ -61,12 +61,12 @@ namespace WpfApp1
 
 		private void MainMenuItemRun_Click(object sender, RoutedEventArgs e) // 리네임 실행
 		{
-			ClassMethodGroup.Rename(classListView1, classListView2, "run");
+			MethodGroup.Rename(classListView1, classListView2, "run");
 		}
 
 		private void MainMenuItemRestore_Click(object sender, RoutedEventArgs e) // 리네임 복구
 		{
-			ClassMethodGroup.Rename(classListView1, classListView2, "restore");
+			MethodGroup.Rename(classListView1, classListView2, "restore");
 		}
 
 		private void ListView1_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e) // 드래그 시작

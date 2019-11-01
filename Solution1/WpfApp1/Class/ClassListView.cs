@@ -7,7 +7,7 @@ using System.Windows.Media;
 
 namespace WpfApp1
 {
-	public class ClassListViewItem
+	public class ListViewItem
 	{
 		public string Path { get; set; }
 		public string Directory { get; set; }
@@ -24,7 +24,7 @@ namespace WpfApp1
 			this.listView = listView;
 		}
 
-		public ObservableCollection<ClassListViewItem> items = new ObservableCollection<ClassListViewItem>();
+		public ObservableCollection<ListViewItem> items = new ObservableCollection<ListViewItem>();
 		public ListView listView;
 
 		private bool itemDrag = false;
@@ -50,7 +50,7 @@ namespace WpfApp1
 				int index2 = str.LastIndexOf('.');
 				if (index2 != 0)
 				{
-					items.Add(new ClassListViewItem()
+					items.Add(new ListViewItem()
 					{
 						Path = str,
 						Directory = str.Substring(0, index1),
@@ -117,11 +117,11 @@ namespace WpfApp1
 			try // null 예외 처리
 			{
 				DependencyObject item = VisualTreeHelper.HitTest(listView, Mouse.GetPosition(listView)).VisualHit;
-				while (!(item is ListViewItem))
+				while (!(item is System.Windows.Controls.ListViewItem))
 				{
 					item = VisualTreeHelper.GetParent(item);
 				}
-				int itemIndex = listView.Items.IndexOf(((ListViewItem)item).DataContext);
+				int itemIndex = listView.Items.IndexOf(((System.Windows.Controls.ListViewItem)item).DataContext);
 				return itemIndex;
 			}
 			catch

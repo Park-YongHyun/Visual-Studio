@@ -5,7 +5,7 @@ using System.Windows.Controls;
 
 namespace WpfApp1
 {
-	public static class ClassMethodGroup
+	public static class MethodGroup
 	{
 		public static void Rename(ClassListView classListView1, ClassListView classListView2, string str)
 		{
