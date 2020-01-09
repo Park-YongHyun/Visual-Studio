@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Input;
 
 namespace WpfApp1
@@ -8,18 +9,22 @@ namespace WpfApp1
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		//private ObservableCollection<ClassListViewItem> listView1Items = new ObservableCollection<ClassListViewItem>();
-		//private ObservableCollection<ClassListViewItem> listView2Items = new ObservableCollection<ClassListViewItem>();
-		private ClassListView classListView1 = new ClassListView();
-		private ClassListView classListView2 = new ClassListView();
-		
+
+		private readonly Dictionary<string, ClassListView> listViews = new Dictionary<string, ClassListView>();
+
 		public MainWindow()
 		{
 			InitializeComponent();
-			listView1.ItemsSource = classListView1.items; // 바인딩
-			listView2.ItemsSource = classListView2.items;
-			classListView1.SetListView(listView1);
-			classListView2.SetListView(listView2);
+
+			listViews.Add("1", new ClassListView(listView1));
+			listViews.Add("2", new ClassListView(listView2));
+			listViews.Add("3", new ClassListView(listView3));
+			listViews.Add("4", new ClassListView(listView4));
+
+			listView1.ItemsSource = listViews["1"].items; // 바인딩
+			listView2.ItemsSource = listViews["2"].items;
+			listView3.ItemsSource = listViews["3"].items;
+			listView4.ItemsSource = listViews["4"].items;
 		}
 		
 		private void ListView_DragEnter(object sender, DragEventArgs e) // 파일 드롭시 마우스 커서 변경
@@ -27,73 +32,82 @@ namespace WpfApp1
 			e.Effects = DragDropEffects.Copy;
 		}
 		
-		private void ListView1_Drop(object sender, DragEventArgs e) // 드롭 이벤트
+		private void ListView_Drop(object sender, DragEventArgs e) // 드롭 이벤트
 		{
-			classListView1.Drop(e);
-		}
-		private void ListView2_Drop(object sender, DragEventArgs e)
-		{
-			classListView2.Drop(e);
+			switch (GetTabItem())
+			{
+				case "1":
+					GetListView(sender).Drop(e);
+					break;
+				case "2":
+					SetTempName(e);
+					break;
+			}
 		}
 		
-		private void ListView1MenuItemRemove_Click(object sender, RoutedEventArgs e) // 삭제 클릭
+		private void ListViewMenuItemRemove_Click(object sender, RoutedEventArgs e) // 삭제 클릭
 		{
-			classListView1.ItemRemove();
-		}
-		private void ListView2MenuItemRemove_Click(object sender, RoutedEventArgs e)
-		{
-			classListView2.ItemRemove();
+			GetListView(sender).ItemRemove();
 		}
 
-		private void ListView1MenuItemClear_Click(object sender, RoutedEventArgs e) // 클리어 클릭
+		private void ListViewMenuItemClear_Click(object sender, RoutedEventArgs e) // 클리어 클릭
 		{
-			classListView1.ItemClear();
-		}
-		private void ListView2MenuItemClear_Click(object sender, RoutedEventArgs e)
-		{
-			classListView2.ItemClear();
+			GetListView(sender).ItemClear();
 		}
 		private void MainMenuItemClear_Click(object sender, RoutedEventArgs e)
 		{
-			classListView1.ItemClear();
-			classListView2.ItemClear();
+			switch (GetTabItem())
+			{
+				case "1":
+					listViews["1"].ItemClear();
+					listViews["2"].ItemClear();
+					break;
+				case "2":
+					listViews["3"].ItemClear();
+					listViews["4"].ItemClear();
+					break;
+			}
 		}
 
-		private void MainMenuItemRun_Click(object sender, RoutedEventArgs e) // 리네임 실행
+		private void MainMenuItemRun_Click(object sender, RoutedEventArgs e) // Rename 실행
 		{
-			MethodGroup.Rename(classListView1, classListView2, "run");
+			switch (GetTabItem())
+			{
+				case "1":
+					Rename(listViews["1"], listViews["2"], "copyname");
+					break;
+				case "2":
+					Rename(listViews["3"], listViews["4"], "tempname");
+					break;
+			}
 		}
 
-		private void MainMenuItemRestore_Click(object sender, RoutedEventArgs e) // 리네임 복구
+		private void MainMenuItemRestore_Click(object sender, RoutedEventArgs e) // Rename 복구
 		{
-			MethodGroup.Rename(classListView1, classListView2, "restore");
+			switch (GetTabItem())
+			{
+				case "1":
+					Rename(listViews["1"], listViews["2"], "restore");
+					break;
+				case "2":
+					Rename(listViews["3"], listViews["4"], "restore");
+					break;
+			}
 		}
 
-		private void ListView1_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e) // 드래그 시작
+		private void ListView_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e) // 드래그 시작
 		{
-			classListView1.DragStart();
-		}
-		private void ListView2_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-		{
-			classListView2.DragStart();
+			GetListView(sender).DragStart();
 		}
 
-		private void ListView1_PreviewMouseMove(object sender, MouseEventArgs e) // 드래그 동작
+		private void ListView_PreviewMouseMove(object sender, MouseEventArgs e) // 드래그 동작
 		{
-			classListView1.DragMouseMove();
-		}
-		private void ListView2_PreviewMouseMove(object sender, MouseEventArgs e)
-		{
-			classListView2.DragMouseMove();
+			GetListView(sender).DragMouseMove();
 		}
 
-		private void ListView1_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e) // 드래그 중지
+		private void ListView_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e) // 드래그 중지
 		{
-			classListView1.DragStop();
-		}
-		private void ListView2_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-		{
-			classListView2.DragStop();
+			GetListView(sender).DragStop();
 		}
 	}
 }
