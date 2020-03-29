@@ -9,7 +9,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ScrSvr_Project1", "Project1
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApp1", "WindowsFormsApp1\WindowsFormsApp1.csproj", "{4A530A5F-F45D-4338-877D-70A92A151F22}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp1", "WpfApp1\WpfApp1.csproj", "{6B8C2465-DF7F-49CB-9E30-2C6B577CDFF4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Renamer_Project1", "Renamer_Project1\Renamer_Project1.csproj", "{6B8C2465-DF7F-49CB-9E30-2C6B577CDFF4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp2", "WpfApp2\WpfApp2.csproj", "{4A627287-27C8-40FA-95FD-3C08AF86A270}"
 EndProject
