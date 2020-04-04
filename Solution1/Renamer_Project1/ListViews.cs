@@ -3,12 +3,13 @@ using System.Windows.Controls;
 
 namespace Renamer_Project1
 {
-	public class ListViewItemType1
+	public class ListViewType1Item
 	{
 		public string Path { get; set; }
 		public string Directory { get; set; }
 		public string Filename { get; set; }
 		public string Extension { get; set; }
+		public bool Selected { get; set; }
 	}
 	public class ListViewType1
 	{
@@ -17,11 +18,11 @@ namespace Renamer_Project1
 			this.listView = listView;
 		}
 
-		public ObservableCollection<ListViewItemType1> items = new ObservableCollection<ListViewItemType1>();
+		public ObservableCollection<ListViewType1Item> items = new ObservableCollection<ListViewType1Item>();
 		public ListView listView;
 	}
 
-	public class ListViewItemType2
+	public class ListViewType2Item
 	{
 		public string Path { get; set; }
 		public string Directory { get; set; }
@@ -37,7 +38,7 @@ namespace Renamer_Project1
 			this.listView = listView;
 		}
 
-		public ObservableCollection<ListViewItemType2> items = new ObservableCollection<ListViewItemType2>();
+		public ObservableCollection<ListViewType2Item> items = new ObservableCollection<ListViewType2Item>();
 		public ListView listView;
 	}
 }

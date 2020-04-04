@@ -92,24 +92,24 @@ namespace Renamer_Project1
 			}
 		}
 
-		private void ListViewMenuItemTempName_Click(object sender, RoutedEventArgs e) // TempName
+		private void ListViewMenuItemTempName_Click(object sender, RoutedEventArgs e) // TempName 실행
 		{
 			SetTempName(listViews["3"]);
 		}
 
-		private void ListView_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e) // 드래그 시작
+		private void ListView_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e) // 마우스 좌측 버튼
 		{
-			DragStart(GetListView(sender));
+			DragStart(GetListView(sender), e); // 드래그 시작
 		}
 
-		private void ListView_PreviewMouseMove(object sender, MouseEventArgs e) // 드래그 동작
+		private void ListView_PreviewMouseMove(object sender, MouseEventArgs e) // 마우스 이동
 		{
-			DragMouseMove(GetListView(sender));
+			DragMouseMove(); // 드래그 동작
 		}
 
-		private void ListView_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e) // 드래그 중지
+		private void ListView_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e) // 마우스 좌측 버튼
 		{
-			DragStop();
+			DragStop(); // 드래그 중지
 		}
 
 		private void TextBox_PreviewMouseWheel(object sender, MouseWheelEventArgs e) // 마우스휠

@@ -24,6 +24,11 @@
 					</Grid.ColumnDefinitions>
 					<ListView x:Name="listView1" Margin="10" AllowDrop="True" DragEnter="ListView_DragEnter" Drop="ListView_Drop"
 							  PreviewMouseLeftButtonDown="ListView_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="ListView_PreviewMouseLeftButtonUp" PreviewMouseMove="ListView_PreviewMouseMove">
+						<ListView.ItemContainerStyle>
+							<Style TargetType="ListViewItem">
+								<Setter Property="IsSelected" Value="{Binding Selected}"/>
+							</Style>
+						</ListView.ItemContainerStyle>
 						<ListView.ContextMenu>
 							<ContextMenu>
 								<MenuItem Header="_Remove" Click="ListViewMenuItemRemove_Click"/>
@@ -39,6 +44,11 @@
 					</ListView>
 					<ListView x:Name="listView2" Margin="10" AllowDrop="True" DragEnter="ListView_DragEnter" Drop="ListView_Drop" Grid.Column="1"
 							  PreviewMouseLeftButtonDown="ListView_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="ListView_PreviewMouseLeftButtonUp" PreviewMouseMove="ListView_PreviewMouseMove">
+						<ListView.ItemContainerStyle>
+							<Style TargetType="ListViewItem">
+								<Setter Property="IsSelected" Value="{Binding Selected}"/>
+							</Style>
+						</ListView.ItemContainerStyle>
 						<ListView.ContextMenu>
 							<ContextMenu>
 								<MenuItem Header="_Remove" Click="ListViewMenuItemRemove_Click"/>
@@ -89,7 +99,7 @@
 					</StackPanel>
 				</Grid>
 				<ListView x:Name="listView3" Margin="10" AllowDrop="True" DragEnter="ListView_DragEnter" Drop="ListView_Drop"
-							  PreviewMouseLeftButtonDown="ListView_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="ListView_PreviewMouseLeftButtonUp" PreviewMouseMove="ListView_PreviewMouseMove">
+						  PreviewMouseLeftButtonDown="ListView_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="ListView_PreviewMouseLeftButtonUp" PreviewMouseMove="ListView_PreviewMouseMove">
 					<ListView.ItemContainerStyle>
 						<Style TargetType="ListViewItem">
 							<Setter Property="IsSelected" Value="{Binding Selected}"/>

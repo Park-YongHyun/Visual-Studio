@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
@@ -10,50 +11,133 @@ namespace Renamer_Project1
 	public partial class MainWindow
 	{
 		private bool itemDrag = false;
+		private bool itemDragged = false;
+		private dynamic activeListView;
+		private readonly List<int> indexesList = new List<int>();
 		private int itemIndex1 = -1;
 		private int itemIndex2 = -1;
 
-		private void DragStart(dynamic classListView) // 드래그 시작
+		private void DragStart(dynamic classListView, MouseButtonEventArgs e) // 드래그 시작
 		{
-			itemDrag = true;
-			itemIndex1 = GetItemIndex(classListView);
+			activeListView = classListView;
+			itemDragged = false;
+			itemIndex1 = GetItemIndex();
+			if (itemIndex1 != -1 && !(Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.LeftCtrl)))
+			{
+				e.Handled = true;
+				//itemDrag = true;
+				indexesList.Clear(); // 인덱스 리스트 모든 요소 제거
+				for (int i = 0; i < classListView.items.Count; i++) // 선택된 아이템 인덱스 리스트
+				{
+					if (classListView.items[i].Selected) indexesList.Add(i);
+				}
+				if (indexesList.Count > 1 && indexesList[0] <= itemIndex1 && indexesList[indexesList.Count - 1] >= itemIndex1)
+				{
+					itemDrag = true;
+				}
+				else
+				{
+					indexesList.Clear(); // 인덱스 리스트 모든 요소 제거
+					indexesList.Add(itemIndex1);
+					itemDrag = true;
+				}
+			}
 		}
 		private void DragStop() // 드래그 중지
 		{
 			itemDrag = false;
+			if (itemDragged) // 드래그 후
+			{
+				foreach (int index in indexesList) // 이동한 아이템 선택
+				{
+					activeListView.items[index].Selected = true;
+				}
+				activeListView.listView.Items.Refresh(); // 새로고침
+			}
+			else if (!(Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.LeftCtrl))) // 드래그 안함
+			{
+				activeListView.listView.SelectedItem = null; // 모두 선택 해제
+				if (itemIndex1 != -1) activeListView.items[itemIndex1].Selected = true;
+				activeListView.listView.Items.Refresh(); // 새로고침
+			}
 		}
-		private void DragMouseMove(dynamic classListView) // 아이템 드래그 이동
+		//private void DragMouseMove(dynamic classListView) // 1개 아이템 드래그 이동
+		//{
+		//	if (itemDrag && itemIndex1 != -1)
+		//	{
+		//		itemIndex2 = GetItemIndex(classListView);
+		//		while (itemIndex1 != itemIndex2 && itemIndex2 != -1)
+		//		{
+		//			if (itemIndex1 < itemIndex2)
+		//			{
+		//				classListView.items.Move(itemIndex1, itemIndex1 + 1);
+		//				itemIndex1++;
+		//			}
+		//			else if (itemIndex1 > itemIndex2)
+		//			{
+		//				classListView.items.Move(itemIndex1, itemIndex1 - 1);
+		//				itemIndex1--;
+		//			}
+		//		}
+		//	}
+		//}
+		private void DragMouseMove() // 1개 이상 아이템 드래그 이동
 		{
 			if (itemDrag && itemIndex1 != -1)
 			{
-				itemIndex2 = GetItemIndex(classListView);
-				while (itemIndex1 != itemIndex2 && itemIndex2 != -1)
+				itemDragged = true;
+				int itemsCount = activeListView.items.Count;
+				itemIndex2 = GetItemIndex();
+				bool moveLimit = false;
+				while (itemIndex1 != itemIndex2 && itemIndex2 != -1) // 이동
 				{
-					if (itemIndex1 < itemIndex2)
+					if (itemIndex1 < itemIndex2) // 아래로 이동
 					{
-						int tmp = itemIndex1 + 1;
-						classListView.items.Move(itemIndex1, tmp);
-						itemIndex1++;
+						for (int i = indexesList.Count - 1; i > -1; i--)
+						{
+							int index = indexesList[i];
+							if (index == itemsCount - 1)
+							{
+								moveLimit = true;
+								break;
+							}
+							indexesList[i]++;
+							activeListView.items.Move(index, index + 1);
+						}
+						if (!moveLimit) itemIndex1++;
 					}
-					else if (itemIndex1 > itemIndex2)
+					else if (itemIndex1 > itemIndex2) // 위로 이동
 					{
-						int tmp = itemIndex1 - 1;
-						classListView.items.Move(itemIndex1, tmp);
-						itemIndex1--;
+						for (int i = 0; i < indexesList.Count; i++)
+						{
+							int index = indexesList[i];
+							if (index == 0)
+							{
+								moveLimit = true;
+								break;
+							}
+							indexesList[i]--;
+							activeListView.items.Move(index, index - 1);
+						}
+						if (!moveLimit) itemIndex1--;
 					}
+					if (moveLimit) break;
 				}
+				activeListView.listView.SelectedItem = null; // 모두 선택 해제
+
+				//draggedListView.listView.Items.Refresh(); mouseup 이벤트 생략 발생! // 새로고침
 			}
 		}
-		private int GetItemIndex(dynamic classListView) // 마우스 아래 아이템 인덱스 가져오기
+		private int GetItemIndex() // 마우스 아래 아이템 인덱스 가져오기
 		{
 			try // null 예외 처리
 			{
-				DependencyObject item = VisualTreeHelper.HitTest(classListView.listView, Mouse.GetPosition(classListView.listView)).VisualHit;
+				DependencyObject item = VisualTreeHelper.HitTest(activeListView.listView, Mouse.GetPosition(activeListView.listView)).VisualHit;
 				while (!(item is ListViewItem))
 				{
 					item = VisualTreeHelper.GetParent(item);
 				}
-				int itemIndex = classListView.listView.Items.IndexOf(((ListViewItem)item).DataContext);
+				int itemIndex = activeListView.listView.Items.IndexOf(((ListViewItem)item).DataContext);
 				return itemIndex;
 			}
 			catch
@@ -179,14 +263,14 @@ namespace Renamer_Project1
 
 		private void SetTempName(ListViewType2 classListView) // TempName
 		{
-			foreach (ListViewItemType2 item in classListView.items)
+			foreach (ListViewType2Item item in classListView.items)
 			{
 				if (item.Selected)
 				{
 					item.TempName = TempName();
 				}
 			}
-			classListView.listView.Items.Refresh();
+			classListView.listView.Items.Refresh(); // 새로고침
 		}
 		private string TempName()
 		{
@@ -210,7 +294,7 @@ namespace Renamer_Project1
 			}
 		}
 
-		private void DropFiles(DragEventArgs e, ListViewType1 classListView) // 드롭 파일 추가 1
+		private void DropFiles(DragEventArgs e, ListViewType1 classListView) // 드롭 파일 추가 (타입1)
 		{
 			string[] dropFiles = (string[])e.Data.GetData(DataFormats.FileDrop);
 			Array.Sort(dropFiles);
@@ -220,7 +304,7 @@ namespace Renamer_Project1
 				int index2 = dropFile.LastIndexOf('.');
 				if (index2 > 0)
 				{
-					classListView.items.Add(new ListViewItemType1()
+					classListView.items.Add(new ListViewType1Item()
 					{
 						Path = dropFile,
 						Directory = dropFile.Substring(0, index1),
@@ -231,7 +315,7 @@ namespace Renamer_Project1
 				}
 			}
 		}
-		private void DropFiles(DragEventArgs e, ListViewType2 classListView) // 드롭 파일 추가 2
+		private void DropFiles(DragEventArgs e, ListViewType2 classListView) // 드롭 파일 추가 (타입2)
 		{
 			string[] dropFiles = (string[])e.Data.GetData(DataFormats.FileDrop);
 			Array.Sort(dropFiles);
@@ -245,7 +329,7 @@ namespace Renamer_Project1
 					foreach (string line in File.ReadAllLines(dropFile))
 					{
 						string[] tmp = line.Split('\t');
-						classListView.items.Add(new ListViewItemType2()
+						classListView.items.Add(new ListViewType2Item()
 						{
 							Path = tmp[1] + tmp[2] + tmp[3],
 							Directory = tmp[1],
@@ -259,7 +343,7 @@ namespace Renamer_Project1
 				}
 				if (index2 > 0)
 				{
-					classListView.items.Add(new ListViewItemType2()
+					classListView.items.Add(new ListViewType2Item()
 					{
 						Path = dropFile,
 						Directory = dropFile.Substring(0, index1),
@@ -310,7 +394,10 @@ namespace Renamer_Project1
 			{
 				textBox2.Text = "1";
 			}
-			catch { }
+			catch // 시작시 에러
+			{
+
+			}
 		}
 	}
 }
