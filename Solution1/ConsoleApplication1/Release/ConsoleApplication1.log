@@ -1,1 +1,4 @@
-﻿
+﻿  ConsoleApplication1.cpp
+C:\GitHub\Visual-Studio\Solution1\ConsoleApplication1\ConsoleApplication1.cpp(8,10): fatal error C1083: 미리 컴파일된 헤더 파일을 열 수 없습니다. 'Release\ConsoleApplication1.pch': No such file or directory
+  t1.cpp
+C:\GitHub\Visual-Studio\Solution1\ConsoleApplication1\t1.cpp(20,1): fatal error C1010: 미리 컴파일된 헤더를 찾는 동안 예기치 않은 파일의 끝이 나타났습니다. '#include "pch.h"'을(를) 소스에 추가하시겠습니까?

@@ -390,13 +390,9 @@ namespace Renamer_Project1
 
 		private void ComboBox1SelectionChanged() // 선택 변경시 초기화
 		{
-			try
+			if(textBox2 != null) // 시작시 예외 발생(NullReferenceException)
 			{
 				textBox2.Text = "1";
-			}
-			catch // 시작시 에러
-			{
-
 			}
 		}
 	}
