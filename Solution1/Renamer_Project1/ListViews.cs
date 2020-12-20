@@ -3,42 +3,39 @@ using System.Windows.Controls;
 
 namespace Renamer_Project1
 {
-	public class ListViewType1Item
+	public abstract class ClsListViewItem
 	{
 		public string Path { get; set; }
 		public string Directory { get; set; }
-		public string Filename { get; set; }
+		public string FileName { get; set; }
 		public string Extension { get; set; }
 		public bool Selected { get; set; }
 	}
-	public class ListViewType1
+	public class ClsListViewItemTypeA : ClsListViewItem
+	{ }
+	public class ClsListViewItemTypeB : ClsListViewItem
 	{
-		public ListViewType1(ListView listView)
-		{
-			this.listView = listView;
-		}
-
-		public ObservableCollection<ListViewType1Item> items = new ObservableCollection<ListViewType1Item>();
-		public ListView listView;
-	}
-
-	public class ListViewType2Item
-	{
-		public string Path { get; set; }
-		public string Directory { get; set; }
-		public string Filename { get; set; }
-		public string Extension { get; set; }
 		public string TempName { get; set; }
-		public bool Selected { get; set; }
 	}
-	public class ListViewType2
+
+	public abstract class ClsListView
 	{
-		public ListViewType2(ListView listView)
+		public ClsListView(ListView listView)
 		{
 			this.listView = listView;
 		}
-
-		public ObservableCollection<ListViewType2Item> items = new ObservableCollection<ListViewType2Item>();
 		public ListView listView;
+	}
+	public class ClsListViewTypeA : ClsListView
+	{
+		public ClsListViewTypeA(ListView listView) : base(listView)
+		{ }
+		public ObservableCollection<ClsListViewItemTypeA> items = new ObservableCollection<ClsListViewItemTypeA>();
+	}
+	public class ClsListViewTypeB : ClsListView
+	{
+		public ClsListViewTypeB(ListView listView) : base(listView)
+		{ }
+		public ObservableCollection<ClsListViewItemTypeB> items = new ObservableCollection<ClsListViewItemTypeB>();
 	}
 }

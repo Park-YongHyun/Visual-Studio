@@ -38,7 +38,7 @@
 						<ListView.View>
 							<GridView>
 								<GridViewColumn Header="Extension" DisplayMemberBinding="{Binding Extension}"/>
-								<GridViewColumn Header="Filename" DisplayMemberBinding="{Binding Filename}"/>
+								<GridViewColumn Header="FileName" DisplayMemberBinding="{Binding FileName}"/>
 							</GridView>
 						</ListView.View>
 					</ListView>
@@ -58,7 +58,7 @@
 						<ListView.View>
 							<GridView>
 								<GridViewColumn Header="Extension" DisplayMemberBinding="{Binding Extension}"/>
-								<GridViewColumn Header="Filename" DisplayMemberBinding="{Binding Filename}"/>
+								<GridViewColumn Header="FileName" DisplayMemberBinding="{Binding FileName}"/>
 							</GridView>
 						</ListView.View>
 					</ListView>
@@ -94,8 +94,9 @@
 						</ComboBox>
 						<CheckBox x:Name="checkBox1" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
 						<TextBox x:Name="textBox2" Margin="10,0" MinWidth="20" Text="1" VerticalAlignment="Center" HorizontalContentAlignment="Right" PreviewMouseWheel="TextBox_PreviewMouseWheel"/>
-						<TextBlock Margin="10,0,0,0" Text="0" VerticalAlignment="Center"/>
+						<TextBlock Margin="10,0,0,0" Text="Pad 0" VerticalAlignment="Center"/>
 						<TextBox x:Name="textBox3" Margin="10,0" MinWidth="20" Text="2" VerticalAlignment="Center" HorizontalContentAlignment="Right" PreviewMouseWheel="TextBox_PreviewMouseWheel"/>
+						<CheckBox x:Name="checkBox2" Margin="0" Content="Auto" IsChecked="True" VerticalAlignment="Center"/>
 					</StackPanel>
 				</Grid>
 				<ListView x:Name="listView3" Margin="10" AllowDrop="True" DragEnter="ListView_DragEnter" Drop="ListView_Drop"
@@ -116,7 +117,7 @@
 						<GridView>
 							<GridViewColumn Header="TempName" DisplayMemberBinding="{Binding TempName}"/>
 							<GridViewColumn Header="Extension" DisplayMemberBinding="{Binding Extension}"/>
-							<GridViewColumn Header="Filename" DisplayMemberBinding="{Binding Filename}"/>
+							<GridViewColumn Header="FileName" DisplayMemberBinding="{Binding FileName}"/>
 						</GridView>
 					</ListView.View>
 				</ListView>

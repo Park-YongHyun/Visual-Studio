@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
 
 namespace Renamer_Project1
@@ -9,21 +8,21 @@ namespace Renamer_Project1
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-
-		private readonly Dictionary<string, dynamic> listViews = new Dictionary<string, dynamic>();
-
 		public MainWindow()
 		{
 			InitializeComponent();
 
-			listViews.Add("1", new ListViewType1(listView1));
-			listViews.Add("2", new ListViewType1(listView2));
-			listViews.Add("3", new ListViewType2(listView3));
+			listViewTypeA1 = new ClsListViewTypeA(listView1);
+			listViewTypeA2 = new ClsListViewTypeA(listView2);
+			listViewTypeB = new ClsListViewTypeB(listView3);
 
-			listView1.ItemsSource = listViews["1"].items; // 바인딩
-			listView2.ItemsSource = listViews["2"].items;
-			listView3.ItemsSource = listViews["3"].items;
+			listView1.ItemsSource = listViewTypeA1.items; // 바인딩
+			listView2.ItemsSource = listViewTypeA2.items;
+			listView3.ItemsSource = listViewTypeB.items;
 		}
+		private readonly ClsListViewTypeA listViewTypeA1;
+		private readonly ClsListViewTypeA listViewTypeA2;
+		private readonly ClsListViewTypeB listViewTypeB;
 
 		private void ListView_DragEnter(object sender, DragEventArgs e) // 파일 드롭시 마우스 커서 변경
 		{
@@ -32,15 +31,7 @@ namespace Renamer_Project1
 
 		private void ListView_Drop(object sender, DragEventArgs e) // 드롭 이벤트
 		{
-			switch (GetTabItem())
-			{
-				case "1":
-					DropFiles(e, GetListView(sender));
-					break;
-				case "2":
-					DropFiles(e, listViews["3"]);
-					break;
-			}
+			DropFiles(e, GetListView(sender));
 		}
 
 		private void ListViewMenuItemRemove_Click(object sender, RoutedEventArgs e) // 삭제 클릭
@@ -54,47 +45,47 @@ namespace Renamer_Project1
 		}
 		private void MainMenuItemClear_Click(object sender, RoutedEventArgs e) // 클리어 클릭
 		{
-			switch (GetTabItem())
+			switch (tabControl.SelectedIndex)
 			{
-				case "1":
-					ItemClear(listViews["1"]);
-					ItemClear(listViews["2"]);
+				case 0:
+					ItemClear(listViewTypeA1);
+					ItemClear(listViewTypeA2);
 					break;
-				case "2":
-					ItemClear(listViews["3"]);
+				case 1:
+					ItemClear(listViewTypeB);
 					break;
 			}
 		}
 
 		private void MainMenuItemRun_Click(object sender, RoutedEventArgs e) // Rename 실행
 		{
-			switch (GetTabItem())
+			switch (tabControl.SelectedIndex)
 			{
-				case "1":
-					Rename(listViews["1"], listViews["2"], "run");
+				case 0:
+					Rename(listViewTypeA1, listViewTypeA2, "run");
 					break;
-				case "2":
-					Rename(listViews["3"], "run");
+				case 1:
+					Rename(listViewTypeB, "run");
 					break;
 			}
 		}
 
 		private void MainMenuItemRestore_Click(object sender, RoutedEventArgs e) // Rename 복구
 		{
-			switch (GetTabItem())
+			switch (tabControl.SelectedIndex)
 			{
-				case "1":
-					Rename(listViews["1"], listViews["2"], "restore");
+				case 0:
+					Rename(listViewTypeA1, listViewTypeA2, "restore");
 					break;
-				case "2":
-					Rename(listViews["3"], "restore");
+				case 1:
+					Rename(listViewTypeB, "restore");
 					break;
 			}
 		}
 
 		private void ListViewMenuItemTempName_Click(object sender, RoutedEventArgs e) // TempName 실행
 		{
-			SetTempName(listViews["3"]);
+			SetTempName(listViewTypeB);
 		}
 
 		private void ListView_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e) // 마우스 좌측 버튼
