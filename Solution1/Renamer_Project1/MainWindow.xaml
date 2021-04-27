@@ -8,6 +8,17 @@
         mc:Ignorable="d"
         Title="Renamer" Height="600" Width="800">
 	<TabControl x:Name="tabControl">
+		<TabControl.Resources>
+			<Style TargetType="ListView">
+				<Setter Property="Margin" Value="10"/>
+				<Setter Property="AllowDrop" Value="True"/>
+				<EventSetter Event="DragEnter" Handler="ListView_DragEnter"/>
+				<EventSetter Event="Drop" Handler="ListView_Drop"/>
+				<EventSetter Event="PreviewMouseLeftButtonDown" Handler="ListView_PreviewMouseLeftButtonDown"/>
+				<EventSetter Event="PreviewMouseLeftButtonUp" Handler="ListView_PreviewMouseLeftButtonUp"/>
+				<EventSetter Event="PreviewMouseMove" Handler="ListView_PreviewMouseMove"/>
+			</Style>
+		</TabControl.Resources>
 		<TabItem x:Name="tabItem1" Header="CopyName">
 			<DockPanel Background="#FFE5E5E5">
 				<Menu DockPanel.Dock="Top">
@@ -22,8 +33,7 @@
 						<ColumnDefinition/>
 						<ColumnDefinition/>
 					</Grid.ColumnDefinitions>
-					<ListView x:Name="listView1" Margin="10" AllowDrop="True" DragEnter="ListView_DragEnter" Drop="ListView_Drop"
-							  PreviewMouseLeftButtonDown="ListView_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="ListView_PreviewMouseLeftButtonUp" PreviewMouseMove="ListView_PreviewMouseMove">
+					<ListView x:Name="listView1" Grid.Column="0">
 						<ListView.ItemContainerStyle>
 							<Style TargetType="ListViewItem">
 								<Setter Property="IsSelected" Value="{Binding Selected}"/>
@@ -31,6 +41,7 @@
 						</ListView.ItemContainerStyle>
 						<ListView.ContextMenu>
 							<ContextMenu>
+								<!--<MenuItem Header="_Add" Click="ListViewMenuItemAdd_Click"/>-->
 								<MenuItem Header="_Remove" Click="ListViewMenuItemRemove_Click"/>
 								<MenuItem Header="_Clear" Click="ListViewMenuItemClear_Click"/>
 							</ContextMenu>
@@ -38,12 +49,11 @@
 						<ListView.View>
 							<GridView>
 								<GridViewColumn Header="Extension" DisplayMemberBinding="{Binding Extension}"/>
-								<GridViewColumn Header="FileName" DisplayMemberBinding="{Binding FileName}"/>
+								<GridViewColumn Header="File Name" DisplayMemberBinding="{Binding FileName}"/>
 							</GridView>
 						</ListView.View>
 					</ListView>
-					<ListView x:Name="listView2" Margin="10" AllowDrop="True" DragEnter="ListView_DragEnter" Drop="ListView_Drop" Grid.Column="1"
-							  PreviewMouseLeftButtonDown="ListView_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="ListView_PreviewMouseLeftButtonUp" PreviewMouseMove="ListView_PreviewMouseMove">
+					<ListView x:Name="listView2" Grid.Column="1">
 						<ListView.ItemContainerStyle>
 							<Style TargetType="ListViewItem">
 								<Setter Property="IsSelected" Value="{Binding Selected}"/>
@@ -58,7 +68,7 @@
 						<ListView.View>
 							<GridView>
 								<GridViewColumn Header="Extension" DisplayMemberBinding="{Binding Extension}"/>
-								<GridViewColumn Header="FileName" DisplayMemberBinding="{Binding FileName}"/>
+								<GridViewColumn Header="File Name" DisplayMemberBinding="{Binding FileName}"/>
 							</GridView>
 						</ListView.View>
 					</ListView>
@@ -83,14 +93,7 @@
 					<StackPanel Grid.Row="1" Orientation="Horizontal">
 						<TextBox x:Name="textBox4" Margin="10,0" MinWidth="40" VerticalAlignment="Center" PreviewMouseWheel="TextBox_PreviewMouseWheel"/>
 						<ComboBox x:Name="comboBox1" Margin="10,0" MinWidth="60" IsEditable="True" SelectedIndex="0" VerticalAlignment="Center" SelectionChanged="ComboBox1_SelectionChanged">
-							<ComboBoxItem>EP</ComboBoxItem>
-							<ComboBoxItem>SP</ComboBoxItem>
-							<ComboBoxItem>OVA</ComboBoxItem>
-							<ComboBoxItem>OAD</ComboBoxItem>
-							<ComboBoxItem>OP</ComboBoxItem>
-							<ComboBoxItem>ED</ComboBoxItem>
-							<ComboBoxItem>Menu</ComboBoxItem>
-							<ComboBoxItem>etc</ComboBoxItem>
+							<ComboBoxItem>Temp</ComboBoxItem>
 						</ComboBox>
 						<CheckBox x:Name="checkBox1" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
 						<TextBox x:Name="textBox2" Margin="10,0" MinWidth="20" Text="1" VerticalAlignment="Center" HorizontalContentAlignment="Right" PreviewMouseWheel="TextBox_PreviewMouseWheel"/>
@@ -99,8 +102,7 @@
 						<CheckBox x:Name="checkBox2" Margin="0" Content="Auto" IsChecked="True" VerticalAlignment="Center"/>
 					</StackPanel>
 				</Grid>
-				<ListView x:Name="listView3" Margin="10" AllowDrop="True" DragEnter="ListView_DragEnter" Drop="ListView_Drop"
-						  PreviewMouseLeftButtonDown="ListView_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="ListView_PreviewMouseLeftButtonUp" PreviewMouseMove="ListView_PreviewMouseMove">
+				<ListView x:Name="listView3">
 					<ListView.ItemContainerStyle>
 						<Style TargetType="ListViewItem">
 							<Setter Property="IsSelected" Value="{Binding Selected}"/>

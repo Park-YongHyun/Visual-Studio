@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows;
@@ -10,6 +11,7 @@ namespace Renamer_Project1
 {
 	public partial class MainWindow
 	{
+		// * 주의사항 *
 		// clsListView.listView.SelectedItem = null; 선택 해제, 화면 내에 표시된 것만 작동, 주의!
 		// clsListView.listView.UnselectAll(); 위와 동일
 
@@ -30,7 +32,10 @@ namespace Renamer_Project1
 				dragIndexList.Clear(); // 인덱스 리스트 비우기
 				for (int i = 0; i < activeListView.items.Count; i++) // 선택된 아이템 인덱스 리스팅
 				{
-					if (activeListView.items[i].Selected) dragIndexList.Add(i);
+					if (activeListView.items[i].Selected)
+					{
+						dragIndexList.Add(i);
+					}
 				}
 				if (!dragIndexList.Contains(dragItemIndex1))
 				{
@@ -42,12 +47,23 @@ namespace Renamer_Project1
 		}
 		private void DragStop() // 드래그 중지
 		{
-			if (itemDrag) itemDrag = false;
-			if (itemDragged) itemDragged = false;
-			else if (!(Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.LeftCtrl))) // 드래그 안함
+			if (itemDrag)
+			{
+				itemDrag = false;
+			}
+
+			if (itemDragged)
+			{
+				itemDragged = false;
+			}
+			else if (activeListView != null && !(Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.LeftCtrl))) // 드래그 안함
 			{
 				DeselectAll(activeListView);
-				if (dragItemIndex1 != -1) activeListView.items[dragItemIndex1].Selected = true;
+				if (dragItemIndex1 != -1)
+				{
+					activeListView.items[dragItemIndex1].Selected = true;
+				}
+
 				activeListView.listView.Items.Refresh();
 			}
 		}
@@ -55,7 +71,10 @@ namespace Renamer_Project1
 		{
 			if (itemDrag)
 			{
-				if (Mouse.LeftButton != MouseButtonState.Pressed) DragStop();
+				if (Mouse.LeftButton != MouseButtonState.Pressed)
+				{
+					DragStop();
+				}
 				else if (dragItemIndex1 != -1)
 				{
 					int itemsCount = activeListView.items.Count;
@@ -85,7 +104,10 @@ namespace Renamer_Project1
 								dragIndexList[i]++;
 								activeListView.items.Move(index, index + 1);
 							}
-							if (!moveLimit) dragItemIndex1++;
+							if (!moveLimit)
+							{
+								dragItemIndex1++;
+							}
 						}
 						else if (dragItemIndex1 > dragItemIndex2) // 위로 이동
 						{
@@ -100,13 +122,23 @@ namespace Renamer_Project1
 								dragIndexList[i]--;
 								activeListView.items.Move(index, index - 1);
 							}
-							if (!moveLimit) dragItemIndex1--;
+							if (!moveLimit)
+							{
+								dragItemIndex1--;
+							}
 						}
-						if (moveLimit) break;
+						if (moveLimit)
+						{
+							break;
+						}
 					}
 					if (itemMoved) // 이동 후
 					{
-						foreach (int index in dragIndexList) activeListView.items[index].Selected = true; // 이동한 아이템 선택
+						foreach (int index in dragIndexList)
+						{
+							activeListView.items[index].Selected = true; // 이동한 아이템 선택
+						}
+
 						activeListView.listView.Items.Refresh();
 					}
 
@@ -117,12 +149,19 @@ namespace Renamer_Project1
 		private int GetItemIndex() // 마우스 아래 아이템 인덱스 가져오기
 		{
 			object item = VisualTreeHelper.HitTest(activeListView.listView, Mouse.GetPosition(activeListView.listView));
-			if (item == null) return -1;
+			if (item == null)
+			{
+				return -1;
+			}
+
 			item = ((HitTestResult)item).VisualHit;
 			while (!(item is ListViewItem)) // 탐색
 			{
 				item = VisualTreeHelper.GetParent((DependencyObject)item);
-				if (item == null) return -1;
+				if (item == null)
+				{
+					return -1;
+				}
 			}
 			int itemIndex = activeListView.listView.Items.IndexOf(((ListViewItem)item).DataContext);
 			return itemIndex;
@@ -130,14 +169,38 @@ namespace Renamer_Project1
 
 		private dynamic GetListView(object sender) // 리스트뷰 찾기
 		{
-			if (sender == listView1) return listViewTypeA1;
-			if (sender == listView2) return listViewTypeA2;
-			if (sender == listView3) return listViewTypeB;
+			if (sender == listView1)
+			{
+				return listViewTypeA1;
+			}
+
+			if (sender == listView2)
+			{
+				return listViewTypeA2;
+			}
+
+			if (sender == listView3)
+			{
+				return listViewTypeB;
+			}
+
 			object tmp1 = (FrameworkElement)((ContextMenu)((FrameworkElement)sender).Parent).PlacementTarget;
-			if (tmp1 == listView1) return listViewTypeA1;
-			if (tmp1 == listView2) return listViewTypeA2;
-			if (tmp1 == listView3) return listViewTypeB;
-			MessageBox.Show("error: GetListView");
+			if (tmp1 == listView1)
+			{
+				return listViewTypeA1;
+			}
+
+			if (tmp1 == listView2)
+			{
+				return listViewTypeA2;
+			}
+
+			if (tmp1 == listView3)
+			{
+				return listViewTypeB;
+			}
+
+			MessageBox.Show("Error: GetListView");
 			throw new Exception();
 		}
 
@@ -170,9 +233,9 @@ namespace Renamer_Project1
 								break;
 						}
 					}
-					catch (Exception exc)
+					catch (Exception exception)
 					{
-						error += exc.ToString() + "\n";
+						error += exception.ToString() + "\n";
 					}
 				}
 				if (error != "")
@@ -194,7 +257,11 @@ namespace Renamer_Project1
 				string name = clsListViewTypeB.items[i].FileName;
 				string ext = clsListViewTypeB.items[i].Extension;
 				string tempName = clsListViewTypeB.items[i].TempName;
-				if (tempName is null) continue;
+				if (tempName is null)
+				{
+					continue;
+				}
+
 				try
 				{
 					switch (job)
@@ -214,9 +281,9 @@ namespace Renamer_Project1
 							break;
 					}
 				}
-				catch (Exception exc)
+				catch (Exception exception)
 				{
-					error += exc.ToString() + "\n";
+					error += exception.ToString() + "\n";
 				}
 			}
 			if (fileList != "")
@@ -241,7 +308,14 @@ namespace Renamer_Project1
 			if ((bool)checkBox2.IsChecked)
 			{
 				int countSelectedItem = 0;
-				foreach (ClsListViewItemTypeB item in clsListViewTypeB.items) if (item.Selected) countSelectedItem++;
+				foreach (ClsListViewItemTypeB item in clsListViewTypeB.items)
+				{
+					if (item.Selected)
+					{
+						countSelectedItem++;
+					}
+				}
+
 				textBox3.Text = ((int)Math.Log10(countSelectedItem) + 1).ToString();
 			}
 			foreach (ClsListViewItemTypeB item in clsListViewTypeB.items)
@@ -256,7 +330,11 @@ namespace Renamer_Project1
 		private string TempName()
 		{
 			string tmp1 = "";
-			if (textBox4.Text != string.Empty) tmp1 += textBox4.Text;
+			if (textBox4.Text != string.Empty)
+			{
+				tmp1 += textBox4.Text;
+			}
+
 			tmp1 += comboBox1.Text;
 			if ((bool)checkBox1.IsChecked)
 			{
@@ -285,34 +363,74 @@ namespace Renamer_Project1
 				int index2 = dropFile.LastIndexOf('.');
 				if (index2 > 0)
 				{
-					if (clsListView is ClsListViewTypeA) clsListView.items.Add(new ClsListViewItemTypeA()
+					if (clsListView is ClsListViewTypeA)
 					{
-						Path = dropFile,
-						Directory = dropFile.Substring(0, index1),
-						FileName = dropFile.Substring(index1, index2 - index1),
-						Extension = dropFile.Substring(index2),
-						Selected = true
-					});
-					else if (clsListView is ClsListViewTypeB) clsListView.items.Add(new ClsListViewItemTypeB()
+						clsListView.items.Add(new ClsListViewItemTypeA()
+						{
+							Path = dropFile,
+							Directory = dropFile.Substring(0, index1),
+							FileName = dropFile.Substring(index1, index2 - index1),
+							Extension = dropFile.Substring(index2),
+							Selected = true
+						});
+					}
+					else if (clsListView is ClsListViewTypeB)
 					{
-						Path = dropFile,
-						Directory = dropFile.Substring(0, index1),
-						FileName = dropFile.Substring(index1, index2 - index1),
-						Extension = dropFile.Substring(index2),
-						Selected = true
-					});
+						clsListView.items.Add(new ClsListViewItemTypeB()
+						{
+							Path = dropFile,
+							Directory = dropFile.Substring(0, index1),
+							FileName = dropFile.Substring(index1, index2 - index1),
+							Extension = dropFile.Substring(index2),
+							Selected = true
+						});
+					}
 				}
 			}
 			ColumnAutoWidth(clsListView.listView);
 		}
+		//private void FileDialog(object sender, RoutedEventArgs e)
+		//{
+		//	OpenFileDialog openFileDialog = new OpenFileDialog();
+		//	if (openFileDialog.ShowDialog() == true)
+		//	{
+
+		//	}
+		//}
+		private string[] GetDropFiles(DragEventArgs e)
+		{
+			try
+			{
+				return (string[])e.Data.GetData(DataFormats.FileDrop); // ! 긴 경로 사용 불가
+			}
+			catch (System.Runtime.InteropServices.COMException)
+			{
+				MessageBox.Show("Error: Long Path");
+				return null;
+			}
+			catch (Exception exception)
+			{
+				throw exception;
+			}
+		}
 		private void DropFiles(DragEventArgs e, ClsListViewTypeA clsListViewTypeA) // 드롭 파일 추가 (타입A)
 		{
-			string[] dropFiles = (string[])e.Data.GetData(DataFormats.FileDrop);
+			string[] dropFiles = GetDropFiles(e);
+			if (dropFiles == null)
+			{
+				return;
+			}
+
 			AddItems(dropFiles, clsListViewTypeA);
 		}
 		private void DropFiles(DragEventArgs e, ClsListViewTypeB clsListViewTypeB) // 드롭 파일 추가 (타입B)
 		{
-			string[] dropFiles = (string[])e.Data.GetData(DataFormats.FileDrop);
+			string[] dropFiles = GetDropFiles(e);
+			if (dropFiles == null)
+			{
+				return;
+			}
+
 			if (dropFiles[0].Contains("TempName.txt"))
 			{
 				clsListViewTypeB.items.Clear();
@@ -342,7 +460,10 @@ namespace Renamer_Project1
 		{
 			for (int i = clsListView.items.Count - 1; i >= 0; i--) // 안전하게 역순으로 삭제
 			{
-				if (clsListView.items[i].Selected) clsListView.items.RemoveAt(i);
+				if (clsListView.items[i].Selected)
+				{
+					clsListView.items.RemoveAt(i);
+				}
 			}
 		}
 
@@ -377,7 +498,24 @@ namespace Renamer_Project1
 			clsListView.listView.UnselectAll();
 			foreach (dynamic item in clsListView.items)
 			{
-				if (item.Selected) item.Selected = false;
+				if (item.Selected)
+				{
+					item.Selected = false;
+				}
+			}
+		}
+
+		private void ComboBox1Update()
+		{
+			if (File.Exists("list.txt"))
+			{
+				StreamReader streamReader = new StreamReader("list.txt");
+				string line = streamReader.ReadLine();
+				while (line != null && Convert.ToBoolean(line.Length))
+				{
+					comboBox1.Items.Add(line);
+					line = streamReader.ReadLine();
+				}
 			}
 		}
 	}

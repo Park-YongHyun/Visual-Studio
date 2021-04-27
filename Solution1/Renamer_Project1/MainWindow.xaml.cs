@@ -19,6 +19,8 @@ namespace Renamer_Project1
 			listView1.ItemsSource = listViewTypeA1.items; // 바인딩
 			listView2.ItemsSource = listViewTypeA2.items;
 			listView3.ItemsSource = listViewTypeB.items;
+
+			ComboBox1Update();
 		}
 		private readonly ClsListViewTypeA listViewTypeA1;
 		private readonly ClsListViewTypeA listViewTypeA2;
@@ -33,6 +35,11 @@ namespace Renamer_Project1
 		{
 			DropFiles(e, GetListView(sender));
 		}
+
+		//private void ListViewMenuItemAdd_Click(object sender, RoutedEventArgs e) // 추가 클릭
+		//{
+		//	FileDialog(sender, e);
+		//}
 
 		private void ListViewMenuItemRemove_Click(object sender, RoutedEventArgs e) // 삭제 클릭
 		{
