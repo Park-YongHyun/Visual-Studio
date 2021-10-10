@@ -1,0 +1,60 @@
+System.IO.FileNotFoundException: 'E:\Temp\t1\새 폴더\EP51.zip' 파일을 찾을 수 없습니다.
+파일 이름: 'E:\Temp\t1\새 폴더\EP51.zip'
+   위치: System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   위치: System.IO.File.InternalMove(String sourceFileName, String destFileName, Boolean checkHost)
+   위치: System.IO.File.Move(String sourceFileName, String destFileName)
+   위치: RenamerProject1.MainWindow.Rename(ClsListViewTypeB clsListViewTypeB, String job) 파일 C:\GitHub\Visual-Studio\Solution1\RenamerProject1\MainWindow.xaml.cs:줄 395
+System.IO.FileNotFoundException: 'E:\Temp\t1\새 폴더\EP52.zip' 파일을 찾을 수 없습니다.
+파일 이름: 'E:\Temp\t1\새 폴더\EP52.zip'
+   위치: System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   위치: System.IO.File.InternalMove(String sourceFileName, String destFileName, Boolean checkHost)
+   위치: System.IO.File.Move(String sourceFileName, String destFileName)
+   위치: RenamerProject1.MainWindow.Rename(ClsListViewTypeB clsListViewTypeB, String job) 파일 C:\GitHub\Visual-Studio\Solution1\RenamerProject1\MainWindow.xaml.cs:줄 395
+System.IO.FileNotFoundException: 'E:\Temp\t1\새 폴더\EP53.zip' 파일을 찾을 수 없습니다.
+파일 이름: 'E:\Temp\t1\새 폴더\EP53.zip'
+   위치: System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   위치: System.IO.File.InternalMove(String sourceFileName, String destFileName, Boolean checkHost)
+   위치: System.IO.File.Move(String sourceFileName, String destFileName)
+   위치: RenamerProject1.MainWindow.Rename(ClsListViewTypeB clsListViewTypeB, String job) 파일 C:\GitHub\Visual-Studio\Solution1\RenamerProject1\MainWindow.xaml.cs:줄 395
+System.IO.FileNotFoundException: 'E:\Temp\t1\새 폴더\EP54.zip' 파일을 찾을 수 없습니다.
+파일 이름: 'E:\Temp\t1\새 폴더\EP54.zip'
+   위치: System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   위치: System.IO.File.InternalMove(String sourceFileName, String destFileName, Boolean checkHost)
+   위치: System.IO.File.Move(String sourceFileName, String destFileName)
+   위치: RenamerProject1.MainWindow.Rename(ClsListViewTypeB clsListViewTypeB, String job) 파일 C:\GitHub\Visual-Studio\Solution1\RenamerProject1\MainWindow.xaml.cs:줄 395
+System.IO.FileNotFoundException: 'E:\Temp\t1\새 폴더\EP55.zip' 파일을 찾을 수 없습니다.
+파일 이름: 'E:\Temp\t1\새 폴더\EP55.zip'
+   위치: System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   위치: System.IO.File.InternalMove(String sourceFileName, String destFileName, Boolean checkHost)
+   위치: System.IO.File.Move(String sourceFileName, String destFileName)
+   위치: RenamerProject1.MainWindow.Rename(ClsListViewTypeB clsListViewTypeB, String job) 파일 C:\GitHub\Visual-Studio\Solution1\RenamerProject1\MainWindow.xaml.cs:줄 395
+System.IO.FileNotFoundException: 'E:\Temp\t1\새 폴더\EP56.txt' 파일을 찾을 수 없습니다.
+파일 이름: 'E:\Temp\t1\새 폴더\EP56.txt'
+   위치: System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   위치: System.IO.File.InternalMove(String sourceFileName, String destFileName, Boolean checkHost)
+   위치: System.IO.File.Move(String sourceFileName, String destFileName)
+   위치: RenamerProject1.MainWindow.Rename(ClsListViewTypeB clsListViewTypeB, String job) 파일 C:\GitHub\Visual-Studio\Solution1\RenamerProject1\MainWindow.xaml.cs:줄 395
+System.IO.FileNotFoundException: 'E:\Temp\t1\새 폴더\EP57.txt' 파일을 찾을 수 없습니다.
+파일 이름: 'E:\Temp\t1\새 폴더\EP57.txt'
+   위치: System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   위치: System.IO.File.InternalMove(String sourceFileName, String destFileName, Boolean checkHost)
+   위치: System.IO.File.Move(String sourceFileName, String destFileName)
+   위치: RenamerProject1.MainWindow.Rename(ClsListViewTypeB clsListViewTypeB, String job) 파일 C:\GitHub\Visual-Studio\Solution1\RenamerProject1\MainWindow.xaml.cs:줄 395
+System.IO.FileNotFoundException: 'E:\Temp\t1\새 폴더\EP58.txt' 파일을 찾을 수 없습니다.
+파일 이름: 'E:\Temp\t1\새 폴더\EP58.txt'
+   위치: System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   위치: System.IO.File.InternalMove(String sourceFileName, String destFileName, Boolean checkHost)
+   위치: System.IO.File.Move(String sourceFileName, String destFileName)
+   위치: RenamerProject1.MainWindow.Rename(ClsListViewTypeB clsListViewTypeB, String job) 파일 C:\GitHub\Visual-Studio\Solution1\RenamerProject1\MainWindow.xaml.cs:줄 395
+System.IO.FileNotFoundException: 'E:\Temp\t1\새 폴더\EP59.txt' 파일을 찾을 수 없습니다.
+파일 이름: 'E:\Temp\t1\새 폴더\EP59.txt'
+   위치: System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   위치: System.IO.File.InternalMove(String sourceFileName, String destFileName, Boolean checkHost)
+   위치: System.IO.File.Move(String sourceFileName, String destFileName)
+   위치: RenamerProject1.MainWindow.Rename(ClsListViewTypeB clsListViewTypeB, String job) 파일 C:\GitHub\Visual-Studio\Solution1\RenamerProject1\MainWindow.xaml.cs:줄 395
+System.IO.FileNotFoundException: 'E:\Temp\t1\새 폴더\EP60.txt' 파일을 찾을 수 없습니다.
+파일 이름: 'E:\Temp\t1\새 폴더\EP60.txt'
+   위치: System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   위치: System.IO.File.InternalMove(String sourceFileName, String destFileName, Boolean checkHost)
+   위치: System.IO.File.Move(String sourceFileName, String destFileName)
+   위치: RenamerProject1.MainWindow.Rename(ClsListViewTypeB clsListViewTypeB, String job) 파일 C:\GitHub\Visual-Studio\Solution1\RenamerProject1\MainWindow.xaml.cs:줄 395
