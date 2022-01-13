@@ -1,0 +1,16 @@
+{
+	"audio": {
+		"device1": "Speaker",
+		"device2": "Headphone",
+		"currentDevice": "Speaker"
+	},
+	"unmuteSystemSounds": {
+		"isEnabled": true,
+		"relativePath": "UnmuteSystemSounds\\Release\\net5.0\\UnmuteSystemSounds.exe",
+		"absolutePath": ""
+	},
+	"soundVolumeView": {
+		"relativePath": "SoundVolumeView\\soundvolumeview-x64\\SoundVolumeView.exe",
+		"absolutePath": ""
+	}
+}

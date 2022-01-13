@@ -1,0 +1,17 @@
+{
+	"sshServer": {
+		"host": "127.0.0.1",
+		"port": 22,
+		"userName": "userName",
+		"password": "password",
+		"dockerContainerName": "dockerContainerName"
+	},
+	"server": {
+		"url": "http://server/",
+		"interval": {
+			"hours": 0,
+			"minutes": 5,
+			"seconds": 0
+		}
+	}
+}
