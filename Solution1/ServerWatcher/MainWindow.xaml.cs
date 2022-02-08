@@ -28,8 +28,6 @@ namespace ServerWatcher
 			SimpleEvent.Event1 += ServerWarned;
 		}
 
-		private ViewModel1 viewModel1 = new();
-
 		private void ServerWarned(object sender, EventArgs e)
 		{
 			Win32Api.FlashWindow(new System.Windows.Interop.WindowInteropHelper(this).Handle);

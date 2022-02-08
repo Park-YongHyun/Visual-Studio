@@ -21,7 +21,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServerWatcher", "ServerWatc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Renamer", "Renamer\Renamer.csproj", "{4B44AEF7-3435-4E6F-979F-B322B26AB56C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwitchDefaultAudioDevice", "SwitchDefaultAudioDevice\SwitchDefaultAudioDevice.csproj", "{6E168088-B382-4F39-A7EB-2CBADB40BD8C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwitchDefaultAudioDevice", "SwitchDefaultAudioDevice\SwitchDefaultAudioDevice.csproj", "{6E168088-B382-4F39-A7EB-2CBADB40BD8C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoundControl", "SoundControl\SoundControl.csproj", "{FBC8FF1F-FC43-4D08-B32E-75C40EDCBFF3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -149,6 +151,18 @@ Global
 		{6E168088-B382-4F39-A7EB-2CBADB40BD8C}.Release|x64.Build.0 = Release|Any CPU
 		{6E168088-B382-4F39-A7EB-2CBADB40BD8C}.Release|x86.ActiveCfg = Release|Any CPU
 		{6E168088-B382-4F39-A7EB-2CBADB40BD8C}.Release|x86.Build.0 = Release|Any CPU
+		{FBC8FF1F-FC43-4D08-B32E-75C40EDCBFF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBC8FF1F-FC43-4D08-B32E-75C40EDCBFF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBC8FF1F-FC43-4D08-B32E-75C40EDCBFF3}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{FBC8FF1F-FC43-4D08-B32E-75C40EDCBFF3}.Debug|x64.Build.0 = Debug|Any CPU
+		{FBC8FF1F-FC43-4D08-B32E-75C40EDCBFF3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FBC8FF1F-FC43-4D08-B32E-75C40EDCBFF3}.Debug|x86.Build.0 = Debug|Any CPU
+		{FBC8FF1F-FC43-4D08-B32E-75C40EDCBFF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBC8FF1F-FC43-4D08-B32E-75C40EDCBFF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBC8FF1F-FC43-4D08-B32E-75C40EDCBFF3}.Release|x64.ActiveCfg = Release|Any CPU
+		{FBC8FF1F-FC43-4D08-B32E-75C40EDCBFF3}.Release|x64.Build.0 = Release|Any CPU
+		{FBC8FF1F-FC43-4D08-B32E-75C40EDCBFF3}.Release|x86.ActiveCfg = Release|Any CPU
+		{FBC8FF1F-FC43-4D08-B32E-75C40EDCBFF3}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
