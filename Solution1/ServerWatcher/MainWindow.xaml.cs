@@ -25,10 +25,10 @@ namespace ServerWatcher
 		{
 			InitializeComponent();
 
-			SimpleEvent.Event1 += ServerWarned;
+			((MainWindowViewModel)DataContext).Warned += OnWarned;
 		}
 
-		private void ServerWarned(object sender, EventArgs e)
+		private void OnWarned(object sender, EventArgs e)
 		{
 			Win32Api.FlashWindow(new System.Windows.Interop.WindowInteropHelper(this).Handle);
 		}

@@ -41,13 +41,15 @@ namespace SoundControl
 			File.WriteAllText(filePath, JsonSerializer.Serialize(_jsonRoot, jsonSerializerOptions));
 		}
 
-
+		// lv0(root)
 		public class JsonRoot
 		{
 			public Volume Volume { get; set; }
 			public Popup Popup { get; set; }
+			public Audio Audio { get; set; }
 		}
 
+		// lv1
 		public class Volume
 		{
 			public int StepCount { get; set; }
@@ -58,7 +60,14 @@ namespace SoundControl
 			public int TimeoutMilliseconds { get; set; }
 			public double WindowOpacity { get; set; }
 		}
+		public class Audio
+		{
+			public string Device1Name { get; set; }
+			public string Device2Name { get; set; }
+			public bool UnmuteSystemSound { get; set; }
+		}
 
+		// lv2
 		public class Level
 		{
 			public int ExponentiationBase { get; set; }

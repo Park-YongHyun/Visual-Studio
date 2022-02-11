@@ -6,6 +6,7 @@ namespace UnmuteSystemSounds
 	{
 		static void Main(string[] args)
 		{
+			// 모든 활성 장치의 시스템 사운드 음소거 해제
 			using var deviceEnumerator = new MMDeviceEnumerator();
 			using var devices = deviceEnumerator.EnumAudioEndpoints(DataFlow.Render, DeviceState.Active);
 			foreach (var device in devices)

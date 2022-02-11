@@ -12,8 +12,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AudioDeviceCmdlets" Version="3.0.0.2" />
+    <PackageReference Include="CSCore" Version="1.2.1.2" />
     <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="1.1.0" />
     <PackageReference Include="NAudio" Version="2.0.1" />
+    <PackageReference Include="System.Windows.Extensions" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,6 +26,18 @@
   <ItemGroup>
     <None Update="config.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="hwnd.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Run_SwitchDefaultAudioDevice.ahk">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Run_SwitchDefaultAudioDevice.cpython-39.pyc.pyw">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Run_SwitchDefaultAudioDevice.py">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 

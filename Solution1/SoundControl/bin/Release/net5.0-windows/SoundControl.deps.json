@@ -8,11 +8,33 @@
     ".NETCoreApp,Version=v5.0": {
       "SoundControl/1.0.0": {
         "dependencies": {
+          "AudioDeviceCmdlets": "3.0.0.2",
+          "CSCore": "1.2.1.2",
           "Hardcodet.NotifyIcon.Wpf": "1.1.0",
-          "NAudio": "2.0.1"
+          "NAudio": "2.0.1",
+          "System.Windows.Extensions": "6.0.0"
         },
         "runtime": {
           "SoundControl.dll": {}
+        }
+      },
+      "AudioDeviceCmdlets/3.0.0.2": {
+        "dependencies": {
+          "System.Management.Automation_PowerShell_3.0": "6.3.9600.17400"
+        },
+        "runtime": {
+          "lib/net45/AudioDeviceCmdlets.dll": {
+            "assemblyVersion": "3.0.0.2",
+            "fileVersion": "3.0.0.2"
+          }
+        }
+      },
+      "CSCore/1.2.1.2": {
+        "runtime": {
+          "lib/net35-client/CSCore.dll": {
+            "assemblyVersion": "1.2.1.2",
+            "fileVersion": "0.0.0.0"
+          }
         }
       },
       "Hardcodet.NotifyIcon.Wpf/1.1.0": {
@@ -28,6 +50,22 @@
         "dependencies": {
           "System.Security.AccessControl": "4.7.0",
           "System.Security.Principal.Windows": "4.7.0"
+        }
+      },
+      "Microsoft.Win32.SystemEvents/6.0.0": {
+        "runtime": {
+          "lib/netcoreapp3.1/Microsoft.Win32.SystemEvents.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.21.52210"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/netcoreapp3.1/Microsoft.Win32.SystemEvents.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.21.52210"
+          }
         }
       },
       "NAudio/2.0.1": {
@@ -111,13 +149,65 @@
           }
         }
       },
+      "System.Drawing.Common/6.0.0": {
+        "dependencies": {
+          "Microsoft.Win32.SystemEvents": "6.0.0"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/System.Drawing.Common.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.21.52210"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/unix/lib/netcoreapp3.1/System.Drawing.Common.dll": {
+            "rid": "unix",
+            "assetType": "runtime",
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.21.52210"
+          },
+          "runtimes/win/lib/netcoreapp3.1/System.Drawing.Common.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.21.52210"
+          }
+        }
+      },
+      "System.Management.Automation_PowerShell_3.0/6.3.9600.17400": {
+        "runtime": {
+          "lib/net40/System.Management.Automation.dll": {
+            "assemblyVersion": "3.0.0.0",
+            "fileVersion": "6.3.9600.17400"
+          }
+        }
+      },
       "System.Security.AccessControl/4.7.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "3.1.0",
           "System.Security.Principal.Windows": "4.7.0"
         }
       },
-      "System.Security.Principal.Windows/4.7.0": {}
+      "System.Security.Principal.Windows/4.7.0": {},
+      "System.Windows.Extensions/6.0.0": {
+        "dependencies": {
+          "System.Drawing.Common": "6.0.0"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/System.Windows.Extensions.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.21.52210"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/netcoreapp3.1/System.Windows.Extensions.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.21.52210"
+          }
+        }
+      }
     }
   },
   "libraries": {
@@ -125,6 +215,20 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "AudioDeviceCmdlets/3.0.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-GavBpytlAq1ZHy4HJq2Zm5SJzkM75nJQlN3/pm6FCIjSe9T8DZeG9r1toEhdBJtOamjNDa/IfcxXkkANeVnwJA==",
+      "path": "audiodevicecmdlets/3.0.0.2",
+      "hashPath": "audiodevicecmdlets.3.0.0.2.nupkg.sha512"
+    },
+    "CSCore/1.2.1.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-DoQKUcdZLQawo3mOg8CvujJD9YkvTt6NtEu7S+OCo8+ySl8eCeUw4LFyL2E1OcAkPU918HZM6sUNcvIMcXWg6g==",
+      "path": "cscore/1.2.1.2",
+      "hashPath": "cscore.1.2.1.2.nupkg.sha512"
     },
     "Hardcodet.NotifyIcon.Wpf/1.1.0": {
       "type": "package",
@@ -146,6 +250,13 @@
       "sha512": "sha512-KSrRMb5vNi0CWSGG1++id2ZOs/1QhRqROt+qgbEAdQuGjGrFcl4AOl4/exGPUYz2wUnU42nvJqon1T3U0kPXLA==",
       "path": "microsoft.win32.registry/4.7.0",
       "hashPath": "microsoft.win32.registry.4.7.0.nupkg.sha512"
+    },
+    "Microsoft.Win32.SystemEvents/6.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-hqTM5628jSsQiv+HGpiq3WKBl2c8v1KZfby2J6Pr7pEPlK9waPdgEO6b8A/+/xn/yZ9ulv8HuqK71ONy2tg67A==",
+      "path": "microsoft.win32.systemevents/6.0.0",
+      "hashPath": "microsoft.win32.systemevents.6.0.0.nupkg.sha512"
     },
     "NAudio/2.0.1": {
       "type": "package",
@@ -196,6 +307,20 @@
       "path": "naudio.winmm/2.0.1",
       "hashPath": "naudio.winmm.2.0.1.nupkg.sha512"
     },
+    "System.Drawing.Common/6.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-NfuoKUiP2nUWwKZN6twGqXioIe1zVD0RIj2t976A+czLHr2nY454RwwXs6JU9Htc6mwqL6Dn/nEL3dpVf2jOhg==",
+      "path": "system.drawing.common/6.0.0",
+      "hashPath": "system.drawing.common.6.0.0.nupkg.sha512"
+    },
+    "System.Management.Automation_PowerShell_3.0/6.3.9600.17400": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-u+lG9fj/fis56ip8wA3fluZ2GYaLr8bttxaS6ffDK5OGbwMzB7WzZr2E6TaRwgei57xxnXmCbvzXYzE3iap5kA==",
+      "path": "system.management.automation_powershell_3.0/6.3.9600.17400",
+      "hashPath": "system.management.automation_powershell_3.0.6.3.9600.17400.nupkg.sha512"
+    },
     "System.Security.AccessControl/4.7.0": {
       "type": "package",
       "serviceable": true,
@@ -209,6 +334,13 @@
       "sha512": "sha512-ojD0PX0XhneCsUbAZVKdb7h/70vyYMDYs85lwEI+LngEONe/17A0cFaRFqZU+sOEidcVswYWikYOQ9PPfjlbtQ==",
       "path": "system.security.principal.windows/4.7.0",
       "hashPath": "system.security.principal.windows.4.7.0.nupkg.sha512"
+    },
+    "System.Windows.Extensions/6.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-IXoJOXIqc39AIe+CIR7koBtRGMiCt/LPM3lI+PELtDIy9XdyeSrwXFdWV9dzJ2Awl0paLWUaknLxFQ5HpHZUog==",
+      "path": "system.windows.extensions/6.0.0",
+      "hashPath": "system.windows.extensions.6.0.0.nupkg.sha512"
     }
   }
 }

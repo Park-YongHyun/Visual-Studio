@@ -24,13 +24,9 @@ namespace SoundControl
 		public MainWindow()
 		{
 			InitializeComponent();
-
-#if DEBUG
-			SimpleEvent.Event1 += Test;
-#endif
 		}
 
-		private readonly VolumePopup volumePopup = new();
+		public VolumePopup volumePopup = new();
 
 		protected override void OnSourceInitialized(EventArgs e)
 		{
@@ -38,25 +34,21 @@ namespace SoundControl
 
 			Debug.WriteLine("OnSourceInitialized");
 
-
-			//volumePopup.Show();
-
-
 			Config.LoadJson();
 
-			Win32Api.WindowsHook.SetWindowsHookEx();
+			Win32Api.VolumeControl.WindowsHook.SetWindowsHookEx();
+			Win32Api.VolumeControl.RegHotKey.RegisterHotKey(this);
+			Win32Api.SwitchDefaultAudioDevice.WinMessage.AddHook(this);
 
-			Win32Api.RegHotKey.RegisterHotKey(this);
+			Win32Api.VolumeControl.ShowVolumePopup(-1);
 		}
 		protected override void OnClosed(EventArgs e)
 		{
 			Debug.WriteLine("OnClosed");
 
-
-			Win32Api.WindowsHook.UnhookWindowsHookEx();
-
-			Win32Api.RegHotKey.UnregisterHotKey();
-
+			Win32Api.VolumeControl.WindowsHook.UnhookWindowsHookEx();
+			Win32Api.VolumeControl.RegHotKey.UnregisterHotKey();
+			Win32Api.SwitchDefaultAudioDevice.WinMessage.RemoveHook();
 
 			base.OnClosed(e);
 
@@ -71,10 +63,6 @@ namespace SoundControl
 #if DEBUG
 		private void Test(object sender, EventArgs e)
 		{
-			//Win32Api.Test(new WindowInteropHelper(this).Handle);
-
-			//System.Threading.Thread.Sleep(2000);
-			//Win32Api.SetWinPos.SetWindowPos(volumePopup);
 		}
 #endif
 	}

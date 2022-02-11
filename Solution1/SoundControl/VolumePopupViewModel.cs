@@ -13,7 +13,7 @@ namespace SoundControl
 	{
 		public VolumePopupViewModel()
 		{
-			Win32Api.VolumeChanged += OnVolumeChanged;
+			Win32Api.VolumeControl.VolumeChanged += OnVolumeChanged;
 		}
 
 		private Visibility _winVisibility = Visibility.Hidden; // Binding Mode=TwoWay
@@ -47,7 +47,7 @@ namespace SoundControl
 			{
 				if (_showTimeoutTimer == null)
 				{
-					_showTimeoutTimer = new DispatcherTimer
+					_showTimeoutTimer = new()
 					{
 						Interval = TimeSpan.FromMilliseconds(Config.GetRoot.Popup.TimeoutMilliseconds)
 					};
@@ -56,14 +56,14 @@ namespace SoundControl
 						Debug.WriteLine($"{nameof(_showTimeoutTimer)} elapsed");
 						(sender as DispatcherTimer).Stop();
 
-						if (WinVisibility == Visibility.Visible) WinVisibility = Visibility.Hidden;
+						if (WinVisibility != Visibility.Hidden) WinVisibility = Visibility.Hidden;
 					};
 				}
 				return _showTimeoutTimer;
 			}
 		}
 
-		public void OnVolumeChanged(object sender, Win32Api.VolumeChangedEventArgs e)
+		public void OnVolumeChanged(object sender, Win32Api.VolumeControl.VolumeChangedEventArgs e)
 		{
 			Debug.WriteLine(nameof(OnVolumeChanged));
 			VolumeLevel = e.VolumeLevel;

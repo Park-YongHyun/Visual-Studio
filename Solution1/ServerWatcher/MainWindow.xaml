@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         Title="MainWindow" SizeToContent="WidthAndHeight" Visibility="{Binding Path=WinVisibility, Mode=TwoWay}" WindowState="{Binding Path=WinState}" ResizeMode="CanMinimize" ShowActivated="False">
 	<Window.DataContext>
-		<local:ViewModel1/>
+		<local:MainWindowViewModel/>
 	</Window.DataContext>
 	<Grid>
 		<tb:TaskbarIcon IconSource="icon.ico" ToolTipText="server watcher" LeftClickCommand="{Binding Path=TackbarIconClickCommand}"/>
@@ -37,7 +37,7 @@
 			<Label Grid.Row="1" Grid.Column="0" Content="server watch" Margin="10"/>
 			<StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
 				<Button Content="{Binding Path=ServerButton1Content}" Margin="10" Command="{Binding Path=ServerCommand1}"/>
-				<Button Content="error" Command="{Binding Path=ShowErrorMessageCommand}"/>
+				<Button Content="last error" Command="{Binding Path=ShowErrorMessageCommand}"/>
 				<mc:AlternateContent>
 					<mc:Choice Requires="debug">
 						<Button Content="test" Command="{Binding Path=TestCommand1}"/>

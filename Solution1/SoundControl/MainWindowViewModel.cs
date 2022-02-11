@@ -63,7 +63,7 @@ namespace SoundControl
 		}
 		private void TestCommandExec()
 		{
-			SimpleEvent.Event1Raise();
+			Win32Api.Test();
 		}
 #endif
 	}
