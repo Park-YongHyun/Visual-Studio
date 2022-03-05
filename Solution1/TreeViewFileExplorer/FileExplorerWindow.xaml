@@ -1,0 +1,58 @@
+﻿<Window x:Class="TreeViewFileExplorer.FileExplorerWindow"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:local="clr-namespace:TreeViewFileExplorer"
+		mc:Ignorable="d"
+		Title="TreeViewFileExplorer" Height="1000" Width="800" WindowStartupLocation="CenterScreen">
+	<Window.DataContext>
+		<local:FileExplorerWindowViewModel />
+	</Window.DataContext>
+	<Grid>
+		<TreeView x:Name="treeView1" ItemsSource="{Binding Path=FileSystemTree}" TreeViewItem.Expanded="treeView1_Expanded" TreeViewItem.Collapsed="treeView1_Collapsed" Loaded="treeView1_Loaded"
+				  VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling">
+			<TreeView.Resources>
+				<Style TargetType="TreeViewItem">
+					<Setter Property="IsExpanded" Value="{Binding IsExpanded}" />
+				</Style>
+			</TreeView.Resources>
+			<TreeView.ItemTemplate>
+				<HierarchicalDataTemplate DataType="{x:Type local:FileSystemEntryNode}" ItemsSource="{Binding Children}">
+					<StackPanel Orientation="Horizontal">
+						<!-- connecting line -->
+						<Grid Name="connectingLine1" IsHitTestVisible="False" Loaded="ConnectingLine_Loaded" Panel.ZIndex="-1" d:Visibility="Collapsed">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="*" />
+								<RowDefinition Height="1" />
+								<RowDefinition Height="*" />
+							</Grid.RowDefinitions>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="1" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<Rectangle Stroke="Black" Opacity="0.5" Grid.Row="0" Grid.Column="1"/>
+							<Rectangle Stroke="Black" Opacity="0.5" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" />
+							<Rectangle Stroke="Black" Opacity="0.5" Grid.Row="2" Grid.Column="1" Visibility="{Binding Path=ConnectingLineVisibility}" />
+						</Grid>
+						<Grid Name="connectingLine2" IsHitTestVisible="False" Loaded="ConnectingLine_Loaded" Panel.ZIndex="-1" d:Visibility="Collapsed">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="1" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<Rectangle Stroke="Black" Opacity="0.5" Grid.Column="1" Visibility="{Binding Path=ConnectingLineVisibility}" />
+						</Grid>
+						<!-- /connecting line -->
+
+						<!-- data -->
+						<Image Source="{Binding IconBitmapSource}" Margin="0,0,3,0" />
+						<TextBlock Text="{Binding Name}" Grid.Column="1" VerticalAlignment="Center" />
+						<!-- /data -->
+					</StackPanel>
+				</HierarchicalDataTemplate>
+			</TreeView.ItemTemplate>
+		</TreeView>
+	</Grid>
+</Window>
