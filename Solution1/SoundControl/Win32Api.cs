@@ -99,7 +99,7 @@ namespace SoundControl
 					if (wParam.ToInt32() == WM_KEYDOWN)
 					{
 						//int virtualKeyCode = Marshal.ReadInt32(lParam);
-						KBDLLHOOKSTRUCT keyEventInfo = (KBDLLHOOKSTRUCT)Marshal.PtrToStructure(lParam, typeof(KBDLLHOOKSTRUCT));
+						KBDLLHOOKSTRUCT keyEventInfo = (KBDLLHOOKSTRUCT)Marshal.PtrToStructure(lParam, typeof(KBDLLHOOKSTRUCT))!;
 
 						if (HotKeyHandling((int)keyEventInfo.vkCode))
 						{
@@ -282,7 +282,7 @@ namespace SoundControl
 			}
 
 			// 커스텀 볼륨 팝업 표시
-			public static void ShowVolumePopup(double volumeLevel)
+			public static void ShowVolumePopup(double volumeLevel = -1)
 			{
 				if (volumeLevel < 0)
 				{
@@ -292,7 +292,9 @@ namespace SoundControl
 			}
 		}
 
-		// 재생 장치 제어
+		/*	기본 재생 장치 변경 트리거
+		 *	윈도우 메시지 리스너
+		 */
 		public class SwitchDefaultAudioDevice
 		{
 			public class WinMessage
@@ -330,7 +332,7 @@ namespace SoundControl
 					hwndSource = HwndSource.FromHwnd(windowHandle);
 					hwndSource.AddHook(HwndSourceHook1);
 
-					string filePath = $"{Directory.GetParent(Process.GetCurrentProcess().MainModule.FileName)}/hwnd.txt";
+					string filePath = $"{Directory.GetParent(Environment.ProcessPath!)}/hwnd.txt";
 					File.WriteAllText(filePath, windowHandle.ToString());
 
 					enabled = true;
@@ -348,8 +350,8 @@ namespace SoundControl
 			}
 
 			/*	기본 재생 장치 변경
-			 *	시스템 사운드 음소거 해제
 			 *	볼륨 팝업 표시
+			 *	시스템 사운드 음소거 해제
 			 *	확인차 소리 재생(시스템 사운드)
 			 */
 			public static bool MessageHandling()
@@ -368,26 +370,25 @@ namespace SoundControl
 						policyConfigClient.SetDefaultEndpoint(device.ID, CoreAudioApi.ERole.eMultimedia);
 						policyConfigClient.SetDefaultEndpoint(device.ID, CoreAudioApi.ERole.eCommunications);
 
+						// 시스템 사운드 음소거 해제
+						if (configAudio.UnmuteSystemSound)
+						{
+							SessionCollection audioSessions = device.AudioSessionManager.Sessions;
+							for (int i = 0; i < audioSessions.Count; i++)
+							{
+								if (audioSessions[i].IsSystemSoundsSession && audioSessions[i].SimpleAudioVolume.Mute)
+								{
+									Debug.WriteLine("unmute SystemSoundsSession");
+									audioSessions[i].SimpleAudioVolume.Mute = false;
+								}
+							}
+						}
 						break;
 					}
 				}
 
-				// 시스템 사운드 음소거 해제
-				if (configAudio.UnmuteSystemSound)
-				{
-					SessionCollection defaultAudioSessions = mMDeviceEnumerator.GetDefaultAudioEndpoint(DataFlow.Render, Role.Console).AudioSessionManager.Sessions;
-					for (int i = 0; i < defaultAudioSessions.Count; i++)
-					{
-						if (defaultAudioSessions[i].IsSystemSoundsSession && defaultAudioSessions[i].SimpleAudioVolume.Mute)
-						{
-							Debug.WriteLine("unmute SystemSoundsSession");
-							defaultAudioSessions[i].SimpleAudioVolume.Mute = false;
-						}
-					}
-				}
-
 				// 볼륨 팝업 표시
-				VolumeControl.ShowVolumePopup(-1);
+				VolumeControl.ShowVolumePopup();
 
 				System.Media.SystemSounds.Beep.Play();
 

@@ -40,7 +40,7 @@ namespace SoundControl
 			Win32Api.VolumeControl.RegHotKey.RegisterHotKey(this);
 			Win32Api.SwitchDefaultAudioDevice.WinMessage.AddHook(this);
 
-			Win32Api.VolumeControl.ShowVolumePopup(-1);
+			Win32Api.VolumeControl.ShowVolumePopup();
 		}
 		protected override void OnClosed(EventArgs e)
 		{

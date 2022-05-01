@@ -32,5 +32,10 @@ namespace ServerWatcher
 		{
 			Win32Api.FlashWindow(new System.Windows.Interop.WindowInteropHelper(this).Handle);
 		}
+
+		private void MenuItemExit_Click(object sender, RoutedEventArgs e)
+		{
+			Close();
+		}
 	}
 }

@@ -3,4 +3,4 @@
   Previous IPDB not found, fall back to full compilation.
   All 3 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   코드를 생성했습니다.
-  ScreenSaver.vcxproj -> C:\GitHub\Visual-Studio\Solution1\ScreenSaver\output\ScreenSaver.scr
+  ScreenSaver.vcxproj -> C:\GitHub\Visual-Studio\public\Solution1\ScreenSaver\output\ScreenSaver.scr

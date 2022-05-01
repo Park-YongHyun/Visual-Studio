@@ -54,7 +54,7 @@ namespace SoundControl
 					_showTimeoutTimer.Tick += (sender, eventArgs) =>
 					{
 						Debug.WriteLine($"{nameof(_showTimeoutTimer)} elapsed");
-						(sender as DispatcherTimer).Stop();
+						(sender as DispatcherTimer)?.Stop();
 
 						if (WinVisibility != Visibility.Hidden) WinVisibility = Visibility.Hidden;
 					};

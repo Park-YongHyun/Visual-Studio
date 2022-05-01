@@ -35,5 +35,24 @@ namespace SoundControl
 		{
 			return _canExecute == null || _canExecute((T)parameter);
 		}
+
+		/* 뷰모델에서 사용 예시
+		private ICommand _command1;
+		public ICommand Command1
+		{
+			get
+			{
+				_command1 ??= new RelayCommand<object>(param => Command1Exec(), param => Command1CanExec());
+				return _command1;
+			}
+		}
+		private void Command1Exec()
+		{
+		}
+		private bool Command1CanExec()
+		{
+			return true;
+		}
+		*/
 	}
 }

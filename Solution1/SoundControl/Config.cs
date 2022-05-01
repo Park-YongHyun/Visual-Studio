@@ -12,7 +12,7 @@ namespace SoundControl
 	public class Config
 	{
 		private static JsonRoot _jsonRoot;
-		private static readonly string filePath = $"{Directory.GetParent(Process.GetCurrentProcess().MainModule.FileName)}/config.json";
+		private static readonly string filePath = $"{Directory.GetParent(Environment.ProcessPath!)}/config.json";
 		private static readonly JsonSerializerOptions jsonSerializerOptions = new()
 		{
 			PropertyNamingPolicy = JsonNamingPolicy.CamelCase,

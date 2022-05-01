@@ -2,7 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>C:\GitHub\Visual-Studio\Solution1\ScreenSaver\output\ScreenSaver.scr</FullPath>
+      <FullPath>C:\GitHub\Visual-Studio\public\Solution1\ScreenSaver\output\ScreenSaver.scr</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />

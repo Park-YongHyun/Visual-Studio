@@ -26,5 +26,14 @@ namespace SoundControl
 			OnPropertyChanged(propertyName);
 			return true;
 		}
+
+		/* 뷰모델에서 사용 예시
+		private string _property1;
+		public string Property1
+		{
+			get => _property1;
+			set => SetProperty(ref _property1, value);
+		}
+		*/
 	}
 }

@@ -19,7 +19,7 @@ namespace TreeViewFileExplorer
 		public FileSystemEntryNode(string name, Icon icon = null, bool isExpanded = false)
 		{
 			Name = name;
-			IconBitmapSource = SetIconBitmapSource(icon);
+			SetIconBitmapSource(icon);
 			IsExpanded = isExpanded;
 		}
 
@@ -52,9 +52,9 @@ namespace TreeViewFileExplorer
 			get => _iconBitmapSource;
 			private set => SetProperty(ref _iconBitmapSource, value);
 		}
-		public BitmapSource SetIconBitmapSource(Icon icon)
+		public void SetIconBitmapSource(Icon icon)
 		{
-			if (icon == null) return null;
+			if (icon == null) return;
 
 			string hexString = Convert.ToHexString(hashSHA1.ComputeHash((byte[])imageConverter.ConvertTo(icon.ToBitmap(), typeof(byte[]))!));
 
@@ -65,7 +65,7 @@ namespace TreeViewFileExplorer
 				Debug.WriteLine($"icon count: {iconBitmapSources.Count}");
 			}
 
-			return iconBitmapSources[hexString];
+			IconBitmapSource = iconBitmapSources[hexString];
 		}
 
 		public Visibility ConnectingLineVisibility

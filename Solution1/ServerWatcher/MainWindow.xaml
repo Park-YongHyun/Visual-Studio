@@ -12,7 +12,13 @@
 		<local:MainWindowViewModel/>
 	</Window.DataContext>
 	<Grid>
-		<tb:TaskbarIcon IconSource="icon.ico" ToolTipText="server watcher" LeftClickCommand="{Binding Path=TackbarIconClickCommand}"/>
+		<tb:TaskbarIcon IconSource="icon.ico" ToolTipText="server watcher" LeftClickCommand="{Binding Path=TackbarIconClickCommand}">
+			<tb:TaskbarIcon.ContextMenu>
+				<ContextMenu>
+					<MenuItem Header="exit" Click="MenuItemExit_Click"></MenuItem>
+				</ContextMenu>
+			</tb:TaskbarIcon.ContextMenu>
+		</tb:TaskbarIcon>
 		<Grid>
 			<Grid.Resources>
 				<Style TargetType="Button">

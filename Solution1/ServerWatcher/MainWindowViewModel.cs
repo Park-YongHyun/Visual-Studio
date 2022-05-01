@@ -206,22 +206,40 @@ namespace ServerWatcher
 		private async void ServerWatch()
 		{
 			bool resultIsSuccess = false;
+			string resultStatus = "";
 
-			try
+			for (int i = 0; i < 3; i++)
 			{
-				HttpResponseMessage result = await httpClient.GetAsync(Config.GetRoot.Server.Url);
-				resultIsSuccess = result.IsSuccessStatusCode;
-				if (!resultIsSuccess)
+				try
 				{
-					lastErrorMessage = $"{(int)result.StatusCode} {result.StatusCode}";
+					Debug.WriteLine("request");
+
+					HttpResponseMessage result = await httpClient.GetAsync(Config.GetRoot.Server.Url);
+					resultIsSuccess = result.IsSuccessStatusCode;
+					resultStatus = $"status: {(int)result.StatusCode} {result.StatusCode}";
+					if (resultIsSuccess)
+					{
+						lastErrorMessage = null;
+						break;
+					}
+					else
+					{
+						lastErrorMessage = resultStatus;
+						System.Threading.Thread.Sleep(5000);
+					}
+				}
+				catch (Exception e)
+				{
+					lastErrorMessage = e.Message;
+					System.Threading.Thread.Sleep(5000);
 				}
 			}
-			catch (Exception e)
-			{
-				lastErrorMessage = e.Message;
-			}
 
-			if (!resultIsSuccess)
+			if (resultIsSuccess)
+			{
+				Debug.WriteLine(resultStatus);
+			}
+			else
 			{
 				Debug.WriteLine(lastErrorMessage);
 
