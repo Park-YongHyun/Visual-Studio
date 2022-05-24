@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace 
 {
+	// v1.0.0.20220227
 	public abstract class ViewModelBase : INotifyPropertyChanged
 	{
 		protected ViewModelBase() { }

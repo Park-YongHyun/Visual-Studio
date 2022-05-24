@@ -7,6 +7,7 @@ using System.Windows.Input;
 
 namespace 
 {
+	// v1.0.0.20220227
 	class RelayCommand<T> : ICommand
 	{
 		private readonly Action<T> _execute;

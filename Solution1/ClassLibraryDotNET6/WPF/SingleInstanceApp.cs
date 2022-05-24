@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace 
 {
+	// v1.0.0.20220522.0
 	class SingleInstanceApp
 	{
 		private static Mutex mutex;
@@ -27,4 +28,18 @@ namespace
 			}
 		}
 	}
+
+	/* 사용 예시
+	public partial class App : Application
+	{
+		protected override void OnStartup(StartupEventArgs e)
+		{
+			Debug.WriteLine("OnStartup");
+
+			SingleInstanceApp.CheckAndShutdown(this);
+
+			base.OnStartup(e);
+		}
+	}
+	*/
 }

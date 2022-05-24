@@ -1,0 +1,22 @@
+{
+	"Control": {
+		"AutoStart": true,
+		"TimerIntervalMilliseconds": 1000
+	},
+	"Gpu": {
+		"Usage": {
+			"MinUsage": 10,
+			"MaxUsage": 70,
+			"MinClockFrequencyMHz": 0,
+			"MaxClockFrequencyMHz": 800,
+			"MinFanSpeedLevel": 20,
+			"MaxFanSpeedLevel": 70
+		},
+		"Temperature": {
+			"MinTemperature": 65,
+			"MaxTemperature": 75,
+			"MinFanSpeedLevel": 20,
+			"MaxFanSpeedLevel": 80
+		}
+	}
+}

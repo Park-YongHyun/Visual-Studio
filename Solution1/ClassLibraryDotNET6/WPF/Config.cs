@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace 
 {
+	// v1.0.0.20220523
 	public class Config
 	{
 		private static JsonRoot _jsonRoot;
 		private static readonly string filePath = $"{Directory.GetParent(Environment.ProcessPath!)}/config.json";
 		private static readonly JsonSerializerOptions jsonSerializerOptions = new()
 		{
-			PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
 			WriteIndented = true
 		};
 
@@ -30,7 +30,7 @@ namespace
 
 		public static void LoadJson()
 		{
-			_jsonRoot = JsonSerializer.Deserialize<JsonRoot>(File.ReadAllText(filePath), jsonSerializerOptions);
+			_jsonRoot = JsonSerializer.Deserialize<JsonRoot>(File.ReadAllText(filePath));
 		}
 
 		public static void SaveJson()

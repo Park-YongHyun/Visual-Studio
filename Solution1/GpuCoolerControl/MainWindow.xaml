@@ -1,0 +1,41 @@
+﻿<Window x:Class="GpuCoolerControl.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GpuCoolerControl"
+		xmlns:tb="http://www.hardcodet.net/taskbar"
+		xmlns:debug="debug-mode"
+        mc:Ignorable="d"
+        Title="MainWindow" SizeToContent="WidthAndHeight" MinWidth="200" WindowStartupLocation="CenterScreen"
+		Visibility="{Binding Path=WinVisibility, Mode=TwoWay}" d:Visibility="Visible" WindowState="{Binding Path=WinState}"
+		Loaded="Window_Loaded">
+	<Window.DataContext>
+		<local:MainWindowViewModel/>
+	</Window.DataContext>
+	<Grid>
+		<tb:TaskbarIcon IconSource="icon.ico" ToolTipText="GPU cooler control" LeftClickCommand="{Binding Path=TackbarIconClickCommand}">
+			<tb:TaskbarIcon.ContextMenu>
+				<ContextMenu>
+					<MenuItem Header="exit" Click="MenuItemExit_Click"></MenuItem>
+				</ContextMenu>
+			</tb:TaskbarIcon.ContextMenu>
+		</tb:TaskbarIcon>
+		<Grid>
+			<Grid.Resources>
+				<Style TargetType="Button">
+					<Setter Property="MinWidth" Value="40"/>
+					<Setter Property="Margin" Value="10"/>
+				</Style>
+			</Grid.Resources>
+			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+				<Button Content="{Binding Path=ActivateButtonContent}" Command="{Binding Path=ControlActivateCommand}"></Button>
+				<mc:AlternateContent>
+					<mc:Choice Requires="debug">
+						<Button Content="test" Command="{Binding Path=TestCommand1}"/>
+					</mc:Choice>
+				</mc:AlternateContent>
+			</StackPanel>
+		</Grid>
+	</Grid>
+</Window>
