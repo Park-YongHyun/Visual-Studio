@@ -1,0 +1,32 @@
+﻿<Window x:Class="SoundControl.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SoundControl"
+        xmlns:viewmodel="clr-namespace:SoundControl.ViewModel"
+		xmlns:tb="http://www.hardcodet.net/taskbar"
+		xmlns:debug="debug-mode"
+        mc:Ignorable="d"
+        Title="MainWindow" SizeToContent="WidthAndHeight" MinWidth="200" WindowStartupLocation="CenterScreen"
+		Visibility="{Binding Path=WinVisibility, Mode=TwoWay}" d:Visibility="Visible" WindowState="{Binding Path=WinState}">
+	<Window.DataContext>
+		<viewmodel:MainWindowViewModel/>
+	</Window.DataContext>
+	<Grid>
+		<tb:TaskbarIcon IconSource="/Resource/icon.ico" ToolTipText="sound control" LeftClickCommand="{Binding Path=TackbarIconClickCommand}">
+			<tb:TaskbarIcon.ContextMenu>
+				<ContextMenu>
+					<MenuItem Header="exit" Click="MenuItemExit_Click"></MenuItem>
+				</ContextMenu>
+			</tb:TaskbarIcon.ContextMenu>
+		</tb:TaskbarIcon>
+		<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+			<mc:AlternateContent>
+				<mc:Choice Requires="debug">
+					<Button Content="test" MinWidth="40" Margin="10" Command="{Binding Path=TestCommand}"></Button>
+				</mc:Choice>
+			</mc:AlternateContent>
+		</StackPanel>
+	</Grid>
+</Window>

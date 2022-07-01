@@ -13,18 +13,18 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AudioDeviceCmdlets" Version="3.0.0.2" />
     <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="1.1.0" />
-    <PackageReference Include="NAudio" Version="2.0.1" />
+    <PackageReference Include="NAudio" Version="2.1.0" />
+    <PackageReference Include="PInvoke.User32" Version="0.7.104" />
     <PackageReference Include="System.Windows.Extensions" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="icon.ico" />
+    <Resource Include="Resource\icon.ico" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="config.json">
+    <None Update="Configuration\config.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="hwnd.txt">
@@ -33,6 +33,16 @@
     <None Update="Run_SwitchDefaultAudioDevice.cpython-39.pyc.pyw">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Lib\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="AudioDeviceCmdlets">
+      <HintPath>Lib\AudioDeviceCmdlets.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
