@@ -1,4 +1,9 @@
 {
+	"Process": {
+		"PriorityDescription": "Idle BelowNormal Normal AboveNormal High RealTime",
+		"Priority": "High",
+		"ProcessorAffinity": 3
+	},
 	"Control": {
 		"AutoStart": true,
 		"TimerIntervalMilliseconds": 1000

@@ -41,10 +41,17 @@ namespace GpuCoolerControl
 		// lv0(root)
 		public class JsonRoot
 		{
+			public Process Process { get; set; }
 			public Control Control { get; set; }
 			public Gpu Gpu { get; set; }
 		}
 		// lv1
+		public class Process
+		{
+			public string PriorityDescription { get; set; }
+			public string Priority { get; set; }
+			public int ProcessorAffinity { get; set; }
+		}
 		public class Control
 		{
 			public bool AutoStart { get; set; }

@@ -7,7 +7,7 @@
 		xmlns:tb="http://www.hardcodet.net/taskbar"
 		xmlns:debug="debug-mode"
         mc:Ignorable="d"
-        Title="MainWindow" SizeToContent="WidthAndHeight" MinWidth="200" WindowStartupLocation="CenterScreen"
+        Title="MainWindow" SizeToContent="WidthAndHeight" MinWidth="200" WindowStartupLocation="CenterScreen" Topmost="True"
 		Visibility="{Binding Path=WinVisibility, Mode=TwoWay}" d:Visibility="Visible" WindowState="{Binding Path=WinState}"
 		Loaded="Window_Loaded">
 	<Window.DataContext>
@@ -22,13 +22,51 @@
 			</tb:TaskbarIcon.ContextMenu>
 		</tb:TaskbarIcon>
 		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition/>
+				<RowDefinition/>
+			</Grid.RowDefinitions>
 			<Grid.Resources>
 				<Style TargetType="Button">
 					<Setter Property="MinWidth" Value="40"/>
 					<Setter Property="Margin" Value="10"/>
 				</Style>
 			</Grid.Resources>
-			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+			<Grid HorizontalAlignment="Center">
+				<Grid.RowDefinitions>
+					<RowDefinition/>
+					<RowDefinition/>
+					<RowDefinition/>
+					<RowDefinition/>
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition/>
+					<ColumnDefinition/>
+					<ColumnDefinition/>
+				</Grid.ColumnDefinitions>
+				<Grid.Resources>
+					<Style TargetType="Label">
+						<Setter Property="MinWidth" Value="60"/>
+						<Setter Property="FontSize" Value="16"/>
+					</Style>
+				</Grid.Resources>
+				<Label Grid.Row="0" Grid.Column="0" Content="usage:" HorizontalContentAlignment="Right"/>
+				<Label Grid.Row="0" Grid.Column="1" d:Content="000" Content="{Binding Path=GpuInfo.GpuUsage}" HorizontalContentAlignment="Right"/>
+				<Label Grid.Row="0" Grid.Column="2" Content="%"/>
+
+				<Label Grid.Row="1" Grid.Column="0" Content="clock:" HorizontalContentAlignment="Right"/>
+				<Label Grid.Row="1" Grid.Column="1" d:Content="0000" Content="{Binding Path=GpuInfo.GpuClock}" HorizontalContentAlignment="Right"/>
+				<Label Grid.Row="1" Grid.Column="2" Content="MHz"/>
+
+				<Label Grid.Row="2" Grid.Column="0" Content="temp:" HorizontalContentAlignment="Right"/>
+				<Label Grid.Row="2" Grid.Column="1" d:Content="00" Content="{Binding Path=GpuInfo.GpuTemp}" HorizontalContentAlignment="Right"/>
+				<Label Grid.Row="2" Grid.Column="2" Content="°C"/>
+				
+				<Label Grid.Row="3" Grid.Column="0" Content="fan:" HorizontalContentAlignment="Right"/>
+				<Label Grid.Row="3" Grid.Column="1" d:Content="000" Content="{Binding Path=GpuInfo.GpuFanSpeed}" HorizontalContentAlignment="Right"/>
+				<Label Grid.Row="3" Grid.Column="2" Content="%"/>
+			</Grid>
+			<StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
 				<Button Content="{Binding Path=ActivateButtonContent}" Command="{Binding Path=ControlActivateCommand}"></Button>
 				<mc:AlternateContent>
 					<mc:Choice Requires="debug">

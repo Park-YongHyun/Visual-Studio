@@ -20,6 +20,13 @@ namespace GpuCoolerControl
 
 			SingleInstanceApp.CheckAndShutdown(this);
 
+			using (Process process = Process.GetCurrentProcess())
+			{
+				Config.Process configProcess = Config.GetRoot.Process;
+				process.PriorityClass = (ProcessPriorityClass)Enum.Parse(typeof(ProcessPriorityClass), configProcess.Priority);
+				process.ProcessorAffinity = (IntPtr)configProcess.ProcessorAffinity;
+			}
+
 			base.OnStartup(e);
 		}
 	}

@@ -12,14 +12,10 @@ namespace GpuCoolerControl
 {
 	internal class MainWindowViewModel : ViewModelBase
 	{
-		private Visibility _winVisibility = 
-#if DEBUG
-			Visibility.Visible; // Binding Mode=TwoWay
-#else
-			Visibility.Hidden; // Binding Mode=TwoWay
-#endif
+		private Visibility _winVisibility = Visibility.Hidden; // Binding Mode=TwoWay
 		private WindowState _winState;
 		private string _activateButtonContent = "deactivated";
+		private CoolerControl.GpuInfo _gpuInfo;
 
 		private ICommand _taskbarIconClickCommand;
 		private ICommand _controlActivateCommand;
@@ -28,6 +24,7 @@ namespace GpuCoolerControl
 #endif
 
 		private DispatcherTimer _controlTimer;
+		private DispatcherTimer _gpuInfoTimer;
 
 
 		public Visibility WinVisibility
@@ -48,6 +45,12 @@ namespace GpuCoolerControl
 			set => SetProperty(ref _activateButtonContent, value);
 		}
 
+		public CoolerControl.GpuInfo GpuInfo
+		{
+			get => _gpuInfo;
+			set => SetProperty(ref _gpuInfo, value);
+		}
+
 		public ICommand TackbarIconClickCommand
 		{
 			get
@@ -58,7 +61,7 @@ namespace GpuCoolerControl
 		}
 		private void TaskbarIconClickCommandExec()
 		{
-			WinVisibility = WinVisibility == Visibility.Visible ? Visibility.Hidden : Visibility.Visible;
+			ShowWindowSwitch();
 		}
 
 		public ICommand ControlActivateCommand
@@ -87,7 +90,9 @@ namespace GpuCoolerControl
 		private void TestCommand1Exec()
 		{
 			Debug.WriteLine("test command");
-			Nvapi.CoolerControl.SetFanSpeedLevel();
+			//CoolerControl.GetInstance.SetFanSpeedLevel();
+
+			UpdateGpuInfo();
 		}
 #endif
 
@@ -104,10 +109,47 @@ namespace GpuCoolerControl
 					_controlTimer.Tick += (sender, args) =>
 					{
 						Debug.WriteLine($"{nameof(_controlTimer)} elapsed");
-						Nvapi.CoolerControl.SetFanSpeedLevel();
+						CoolerControl.GetInstance.SetFanSpeedLevel();
 					};
 				}
 				return _controlTimer;
+			}
+		}
+
+		private DispatcherTimer GpuInfoTimer
+		{
+			get
+			{
+				if (_gpuInfoTimer == null)
+				{
+					_gpuInfoTimer = new()
+					{
+						Interval = TimeSpan.FromSeconds(2)
+					};
+					_gpuInfoTimer.Tick += (sender, args) =>
+					{
+						Debug.WriteLine($"{nameof(_gpuInfoTimer)} elapsed");
+						UpdateGpuInfo();
+					};
+				}
+				return _gpuInfoTimer;
+			}
+		}
+
+		public void ShowWindowSwitch()
+		{
+			//WinVisibility = WinVisibility == Visibility.Visible ? Visibility.Hidden : Visibility.Visible;
+
+			if (WinVisibility == Visibility.Hidden)
+			{
+				UpdateGpuInfo();
+				GpuInfoTimer.Start();
+				WinVisibility = Visibility.Visible;
+			}
+			else
+			{
+				GpuInfoTimer.Stop();
+				WinVisibility = Visibility.Hidden;
 			}
 		}
 
@@ -123,6 +165,11 @@ namespace GpuCoolerControl
 				ControlTimer.Start();
 				ActivateButtonContent = "activated";
 			}
+		}
+
+		public void UpdateGpuInfo()
+		{
+			GpuInfo = CoolerControl.GetInstance.GetGpuInfo();
 		}
 	}
 }

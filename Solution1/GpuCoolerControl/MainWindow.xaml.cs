@@ -32,14 +32,19 @@ namespace GpuCoolerControl
 
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
-			Nvapi.CoolerControl.CalculatingTabulation();
-
-#if !DEBUG
-			if (Config.GetRoot.Control.AutoStart)
+			bool start = Config.GetRoot.Control.AutoStart;
+#if DEBUG
+			if (false && start)
+#else
+			if (start)
+#endif
 			{
 				((MainWindowViewModel)DataContext).ControlTimerSwitch();
 			}
-#endif
+			else
+			{
+				((MainWindowViewModel)DataContext).ShowWindowSwitch();
+			}
 		}
 	}
 }
