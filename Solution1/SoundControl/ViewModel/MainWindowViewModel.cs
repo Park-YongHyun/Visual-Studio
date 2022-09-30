@@ -19,11 +19,11 @@ namespace SoundControl.ViewModel
 		 *	switch default audio device
 		 */
 
-		private Visibility _winVisibility =
+		private Visibility _winVisibility = // Binding Mode=TwoWay
 #if DEBUG
-			Visibility.Visible; // Binding Mode=TwoWay
+			Visibility.Visible;
 #else
-			Visibility.Hidden; // Binding Mode=TwoWay
+			Visibility.Hidden;
 #endif
 		private WindowState _winState;
 
@@ -47,8 +47,7 @@ namespace SoundControl.ViewModel
 		{
 			get
 			{
-				if (_taskbarIconClickCommand == null)
-					_taskbarIconClickCommand = new RelayCommand<object>(param => TaskbarIconClickCommandExec());
+				_taskbarIconClickCommand ??= new RelayCommand<object>(param => TaskbarIconClickCommandExec());
 				return _taskbarIconClickCommand;
 			}
 		}
@@ -62,14 +61,13 @@ namespace SoundControl.ViewModel
 		{
 			get
 			{
-				if (_testCommand == null)
-					_testCommand = new RelayCommand<object>(param => TestCommandExec());
+				_testCommand ??= new RelayCommand<object>(param => TestCommandExec());
 				return _testCommand;
 			}
 		}
 		private void TestCommandExec()
 		{
-			Win32Api.Test();
+			SoundDevice.GetInstance.Test();
 		}
 #endif
 	}

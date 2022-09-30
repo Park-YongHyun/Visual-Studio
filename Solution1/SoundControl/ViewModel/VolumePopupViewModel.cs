@@ -15,7 +15,7 @@ namespace SoundControl.ViewModel
 	{
 		public VolumePopupViewModel()
 		{
-			SoundDevice.VolumeControl.VolumeChanged += OnVolumeChanged;
+			SoundDevice.GetInstance.volumeControl.VolumeChanged += OnVolumeChanged;
 		}
 
 		private Visibility _winVisibility = Visibility.Hidden; // Binding Mode=TwoWay
@@ -51,7 +51,7 @@ namespace SoundControl.ViewModel
 				{
 					_showTimeoutTimer = new()
 					{
-						Interval = TimeSpan.FromMilliseconds(Config.GetData.Popup.TimeoutMilliseconds)
+						Interval = TimeSpan.FromMilliseconds(Config.GetData.Popup.TimeoutMillisec)
 					};
 					_showTimeoutTimer.Tick += (sender, eventArgs) =>
 					{

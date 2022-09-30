@@ -1,21 +1,31 @@
 {
+	"Process": {
+		"PriorityDescription": "Idle BelowNormal Normal AboveNormal High RealTime",
+		"Priority": "High",
+		"ProcessorAffinity": 1
+	},
 	"Volume": {
-		"StepCount": 40,
+		"StepCount": 50,
 		"Level": {
 			"Calculated": false,
 			"ExponentiationBase": 100,
-			"MinLevel": 0.001,
+			"MinLevel": 0.01,
 			"MaxLevel": 1,
 			"List": []
 		}
 	},
 	"Popup": {
-		"TimeoutMilliseconds": 1200,
+		"TimeoutMillisec": 1200,
 		"WindowOpacity": 0.75
 	},
 	"Audio": {
 		"Device1Name": "Speaker",
 		"Device2Name": "Headphone",
-		"UnmuteSystemSound": true
+		"UnmuteSystemSound": true,
+		"TestBeep": {
+			"UseSystemBeep": false,
+			"Frequency": 100,
+			"DurationMillisec": 400
+		}
 	}
 }

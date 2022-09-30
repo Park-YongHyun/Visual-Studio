@@ -30,34 +30,36 @@ namespace SoundControl.View
 
 		public VolumePopup volumePopup = new();
 
-		protected override void OnSourceInitialized(EventArgs e)
+		protected override void OnContentRendered(EventArgs e)
 		{
-			base.OnSourceInitialized(e);
+			base.OnContentRendered(e);
 
-			Debug.WriteLine("OnSourceInitialized");
+			Debug.WriteLine($"{nameof(MainWindow)} OnSourceInitialized");
+
+			SoundDevice soundDevice = SoundDevice.GetInstance;
 
 			Config.LoadJson();
-			if (SoundDevice.VolumeControl.CalculateVolumeLevel()) Config.SaveJson(); // 볼륨 계산
+			if (soundDevice.volumeControl.CalculateVolumeLevel()) Config.SaveJson(); // 볼륨 계산
 
 			// 핫키, 리스너 등록
-			Win32Api.VolumeControl.WindowsHook.SetWindowsHookEx();
-			Win32Api.VolumeControl.RegHotKey.RegisterHotKey(this);
-			Win32Api.SwitchDefaultAudioDevice.WinMessage.AddHook(this);
+			soundDevice.hotKeyAndMessage.windowsHook.SetWindowsHookEx();
+			soundDevice.hotKeyAndMessage.regHotKey.RegisterHotKey(this);
+			soundDevice.hotKeyAndMessage.winMessage.AddHook(this);
 
-			SoundDevice.VolumeControl.ShowVolumePopup();
+			soundDevice.popupControl.ShowPopup();
 		}
 		protected override void OnClosed(EventArgs e)
 		{
-			Debug.WriteLine("OnClosed");
+			base.OnClosed(e);
+
+			Debug.WriteLine($"{nameof(MainWindow)} OnClosed");
+
+			SoundDevice soundDevice = SoundDevice.GetInstance;
 
 			// 핫키, 리스너 제거
-			Win32Api.VolumeControl.WindowsHook.UnhookWindowsHookEx();
-			Win32Api.VolumeControl.RegHotKey.UnregisterHotKey();
-			Win32Api.SwitchDefaultAudioDevice.WinMessage.RemoveHook();
-
-			Win32Api.VolumeControl.SystemVolumeOSD.Restore(); // 숨긴 볼륨 OSD 복원
-
-			base.OnClosed(e);
+			soundDevice.hotKeyAndMessage.windowsHook.UnhookWindowsHookEx();
+			soundDevice.hotKeyAndMessage.regHotKey.UnregisterHotKey();
+			soundDevice.hotKeyAndMessage.winMessage.RemoveHook();
 
 			Application.Current.Shutdown();
 		}

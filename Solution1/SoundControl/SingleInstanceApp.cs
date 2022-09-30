@@ -10,9 +10,9 @@ namespace SoundControl
 {
 	class SingleInstanceApp
 	{
-		private static Mutex mutex;
+		private Mutex mutex;
 
-		public static void CheckAndShutdown(System.Windows.Application app)
+		public void CheckAndShutdown(System.Windows.Application app)
 		{
 			string appName = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
 			bool createdNew;

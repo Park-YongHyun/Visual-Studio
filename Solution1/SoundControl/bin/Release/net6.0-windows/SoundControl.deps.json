@@ -8,24 +8,13 @@
     ".NETCoreApp,Version=v6.0": {
       "SoundControl/1.0.0": {
         "dependencies": {
-          "AudioDeviceCmdlets": "3.0.0.2",
           "Hardcodet.NotifyIcon.Wpf": "1.1.0",
-          "NAudio": "2.0.1",
-          "System.Windows.Extensions": "6.0.0"
+          "NAudio": "2.1.0",
+          "System.Windows.Extensions": "6.0.0",
+          "AudioDeviceCmdlets": "3.1.0.1"
         },
         "runtime": {
           "SoundControl.dll": {}
-        }
-      },
-      "AudioDeviceCmdlets/3.0.0.2": {
-        "dependencies": {
-          "System.Management.Automation_PowerShell_3.0": "6.3.9600.17400"
-        },
-        "runtime": {
-          "lib/net45/AudioDeviceCmdlets.dll": {
-            "assemblyVersion": "3.0.0.2",
-            "fileVersion": "3.0.0.2"
-          }
         }
       },
       "Hardcodet.NotifyIcon.Wpf/1.1.0": {
@@ -44,98 +33,90 @@
         }
       },
       "Microsoft.Win32.SystemEvents/6.0.0": {},
-      "NAudio/2.0.1": {
+      "NAudio/2.1.0": {
         "dependencies": {
-          "NAudio.Asio": "2.0.0",
-          "NAudio.Core": "2.0.0",
-          "NAudio.Midi": "2.0.1",
-          "NAudio.Wasapi": "2.0.0",
-          "NAudio.WinForms": "2.0.1",
-          "NAudio.WinMM": "2.0.1"
+          "NAudio.Asio": "2.1.0",
+          "NAudio.Core": "2.1.0",
+          "NAudio.Midi": "2.1.0",
+          "NAudio.Wasapi": "2.1.0",
+          "NAudio.WinForms": "2.1.0",
+          "NAudio.WinMM": "2.1.0"
         },
         "runtime": {
-          "lib/netstandard2.0/NAudio.dll": {
-            "assemblyVersion": "2.0.1.0",
-            "fileVersion": "2.0.1.0"
+          "lib/net6.0-windows7.0/NAudio.dll": {
+            "assemblyVersion": "2.1.0.0",
+            "fileVersion": "2.1.0.0"
           }
         }
       },
-      "NAudio.Asio/2.0.0": {
+      "NAudio.Asio/2.1.0": {
         "dependencies": {
           "Microsoft.Win32.Registry": "4.7.0",
-          "NAudio.Core": "2.0.0"
+          "NAudio.Core": "2.1.0"
         },
         "runtime": {
           "lib/netstandard2.0/NAudio.Asio.dll": {
-            "assemblyVersion": "2.0.0.0",
-            "fileVersion": "2.0.0.0"
+            "assemblyVersion": "2.1.0.0",
+            "fileVersion": "2.1.0.0"
           }
         }
       },
-      "NAudio.Core/2.0.0": {
+      "NAudio.Core/2.1.0": {
         "runtime": {
           "lib/netstandard2.0/NAudio.Core.dll": {
-            "assemblyVersion": "2.0.0.0",
-            "fileVersion": "2.0.0.0"
+            "assemblyVersion": "2.1.0.0",
+            "fileVersion": "2.1.0.0"
           }
         }
       },
-      "NAudio.Midi/2.0.1": {
+      "NAudio.Midi/2.1.0": {
         "dependencies": {
-          "NAudio.Core": "2.0.0"
+          "NAudio.Core": "2.1.0"
         },
         "runtime": {
           "lib/netstandard2.0/NAudio.Midi.dll": {
-            "assemblyVersion": "2.0.1.0",
-            "fileVersion": "2.0.1.0"
+            "assemblyVersion": "2.1.0.0",
+            "fileVersion": "2.1.0.0"
           }
         }
       },
-      "NAudio.Wasapi/2.0.0": {
+      "NAudio.Wasapi/2.1.0": {
         "dependencies": {
-          "NAudio.Core": "2.0.0"
+          "NAudio.Core": "2.1.0"
         },
         "runtime": {
           "lib/netstandard2.0/NAudio.Wasapi.dll": {
-            "assemblyVersion": "2.0.0.0",
-            "fileVersion": "2.0.0.0"
+            "assemblyVersion": "2.1.0.0",
+            "fileVersion": "2.1.0.0"
           }
         }
       },
-      "NAudio.WinForms/2.0.1": {
+      "NAudio.WinForms/2.1.0": {
         "dependencies": {
-          "NAudio.WinMM": "2.0.1"
+          "NAudio.WinMM": "2.1.0"
         },
         "runtime": {
           "lib/netcoreapp3.1/NAudio.WinForms.dll": {
-            "assemblyVersion": "2.0.1.0",
-            "fileVersion": "2.0.1.0"
+            "assemblyVersion": "2.1.0.0",
+            "fileVersion": "2.1.0.0"
           }
         }
       },
-      "NAudio.WinMM/2.0.1": {
+      "NAudio.WinMM/2.1.0": {
         "dependencies": {
           "Microsoft.Win32.Registry": "4.7.0",
-          "NAudio.Core": "2.0.0"
+          "NAudio.Core": "2.1.0"
         },
         "runtime": {
           "lib/netstandard2.0/NAudio.WinMM.dll": {
-            "assemblyVersion": "2.0.1.0",
-            "fileVersion": "2.0.1.0"
+            "assemblyVersion": "2.1.0.0",
+            "fileVersion": "2.1.0.0"
           }
         }
       },
       "System.Drawing.Common/6.0.0": {
         "dependencies": {
           "Microsoft.Win32.SystemEvents": "6.0.0"
-        }
-      },
-      "System.Management.Automation_PowerShell_3.0/6.3.9600.17400": {
-        "runtime": {
-          "lib/net40/System.Management.Automation.dll": {
-            "assemblyVersion": "3.0.0.0",
-            "fileVersion": "6.3.9600.17400"
-          }
         }
       },
       "System.Security.AccessControl/4.7.0": {
@@ -149,6 +130,14 @@
         "dependencies": {
           "System.Drawing.Common": "6.0.0"
         }
+      },
+      "AudioDeviceCmdlets/3.1.0.1": {
+        "runtime": {
+          "AudioDeviceCmdlets.dll": {
+            "assemblyVersion": "3.1.0.1",
+            "fileVersion": "3.1.0.1"
+          }
+        }
       }
     }
   },
@@ -157,13 +146,6 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
-    },
-    "AudioDeviceCmdlets/3.0.0.2": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-GavBpytlAq1ZHy4HJq2Zm5SJzkM75nJQlN3/pm6FCIjSe9T8DZeG9r1toEhdBJtOamjNDa/IfcxXkkANeVnwJA==",
-      "path": "audiodevicecmdlets/3.0.0.2",
-      "hashPath": "audiodevicecmdlets.3.0.0.2.nupkg.sha512"
     },
     "Hardcodet.NotifyIcon.Wpf/1.1.0": {
       "type": "package",
@@ -193,54 +175,54 @@
       "path": "microsoft.win32.systemevents/6.0.0",
       "hashPath": "microsoft.win32.systemevents.6.0.0.nupkg.sha512"
     },
-    "NAudio/2.0.1": {
+    "NAudio/2.1.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-QTbkeWOC9IBRiq2rvyFnm47ro4HYZQXJQMrhgAD1BwbkUzH+NMt+2ayLDnAJNJQu6V69Of6KZSYyDfU2Pr+dzQ==",
-      "path": "naudio/2.0.1",
-      "hashPath": "naudio.2.0.1.nupkg.sha512"
+      "sha512": "sha512-iamDtIq4Tcq6BDEMatX7Wj6KI7rscECS72ZejjnL9RK8BgfrVRH2RlhlQVNxXNp9Up1eFESEiCILNBo7//Rr0g==",
+      "path": "naudio/2.1.0",
+      "hashPath": "naudio.2.1.0.nupkg.sha512"
     },
-    "NAudio.Asio/2.0.0": {
+    "NAudio.Asio/2.1.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-/Pd51zAS2L3+MK/dJ5VrInz6ggHUie9j1qCXysXL3Vj53p9A2RxjpIZafuyba2ZdeMKaOMOHXdtkUqFdKqVMQg==",
-      "path": "naudio.asio/2.0.0",
-      "hashPath": "naudio.asio.2.0.0.nupkg.sha512"
+      "sha512": "sha512-YMXffgqPTsQIjmXYyzLrXSpQZzC7ZH49mmdXaPW3o/5S+AhFKZeOrwUA2fkvphQdGhryObbZnPAq+u8uABkH5A==",
+      "path": "naudio.asio/2.1.0",
+      "hashPath": "naudio.asio.2.1.0.nupkg.sha512"
     },
-    "NAudio.Core/2.0.0": {
+    "NAudio.Core/2.1.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-knmGOIYbzn9ZGkFcVs5d3zEYvi50jVriyEirVtAHjkcDoo2ziK32bZb7KkFARLD4lhCGkqp6uT0+0fc4JIfQcw==",
-      "path": "naudio.core/2.0.0",
-      "hashPath": "naudio.core.2.0.0.nupkg.sha512"
+      "sha512": "sha512-0iowfmolibU4KxjaC/s7lox/BeDg76UVvXtCuCzRiNpylVndqsxXxp+bVWFrpv0KzQDIKLxZrnDmYENlAI0u9g==",
+      "path": "naudio.core/2.1.0",
+      "hashPath": "naudio.core.2.1.0.nupkg.sha512"
     },
-    "NAudio.Midi/2.0.1": {
+    "NAudio.Midi/2.1.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-A5pQerGAmtNNfSMkGaRacqBJG1xg4bjQE0XaxsO3/rhEE80NLUN6gQm+x/m7ZGbSoPUB5fav2jW3tZkdPadZ7w==",
-      "path": "naudio.midi/2.0.1",
-      "hashPath": "naudio.midi.2.0.1.nupkg.sha512"
+      "sha512": "sha512-m2ZunnyZ1p7OoAMh1scHRVle+GiFuIRrzkcxZJREUFHje8O2hcMGya3ZAjD+dV2FTcrbqNQUc4kJy9LOTuydUw==",
+      "path": "naudio.midi/2.1.0",
+      "hashPath": "naudio.midi.2.1.0.nupkg.sha512"
     },
-    "NAudio.Wasapi/2.0.0": {
+    "NAudio.Wasapi/2.1.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-7ES+jfZyOooBp86gql9BZ/OjKFmGfLaSLCtJagtCYiRGxfauHp4hXyeuwxS2mPLBxBGxBo9oGThN6y3QY+/w/w==",
-      "path": "naudio.wasapi/2.0.0",
-      "hashPath": "naudio.wasapi.2.0.0.nupkg.sha512"
+      "sha512": "sha512-Zp/8l79aYQEu7/HfzXWVpqyIwRUPgsvCj/Qx+pR6ykJxvwjqOoUfMiEG9US1wW4d7PEzT5ZBIL+cp90t6HNNiw==",
+      "path": "naudio.wasapi/2.1.0",
+      "hashPath": "naudio.wasapi.2.1.0.nupkg.sha512"
     },
-    "NAudio.WinForms/2.0.1": {
+    "NAudio.WinForms/2.1.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-SOyXRsLePAvIWG20OMRHiUkNijme6J28DKBVesmhdfh4i7OKgkvGLN19eT+vPfXr97yhMudULsyYp9Niz8/a+g==",
-      "path": "naudio.winforms/2.0.1",
-      "hashPath": "naudio.winforms.2.0.1.nupkg.sha512"
+      "sha512": "sha512-yoGCLidMVQmg66dNuEYusY1bttZJ5gxvufxRYFgxIw444dw4C70YsDgLeDugPd0rdwkSCQq5CtrVw6DSmxTxPA==",
+      "path": "naudio.winforms/2.1.0",
+      "hashPath": "naudio.winforms.2.1.0.nupkg.sha512"
     },
-    "NAudio.WinMM/2.0.1": {
+    "NAudio.WinMM/2.1.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-i7Da/gCqvwWvETFBRkuwCelSXEK5rPG7pTaqCU9aXFRiO0p7lwHjm/+k2lOWLmRGUJdLm/VSDO6Vknacnb6mSg==",
-      "path": "naudio.winmm/2.0.1",
-      "hashPath": "naudio.winmm.2.0.1.nupkg.sha512"
+      "sha512": "sha512-lUU5C+XNzKhFUIEafA/nJpbtjksFtbUd033fs27KeHlOM0r6rQFF3l75dqxg+rWkGu81MfkBbYrNpH9p8qmtBA==",
+      "path": "naudio.winmm/2.1.0",
+      "hashPath": "naudio.winmm.2.1.0.nupkg.sha512"
     },
     "System.Drawing.Common/6.0.0": {
       "type": "package",
@@ -248,13 +230,6 @@
       "sha512": "sha512-NfuoKUiP2nUWwKZN6twGqXioIe1zVD0RIj2t976A+czLHr2nY454RwwXs6JU9Htc6mwqL6Dn/nEL3dpVf2jOhg==",
       "path": "system.drawing.common/6.0.0",
       "hashPath": "system.drawing.common.6.0.0.nupkg.sha512"
-    },
-    "System.Management.Automation_PowerShell_3.0/6.3.9600.17400": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-u+lG9fj/fis56ip8wA3fluZ2GYaLr8bttxaS6ffDK5OGbwMzB7WzZr2E6TaRwgei57xxnXmCbvzXYzE3iap5kA==",
-      "path": "system.management.automation_powershell_3.0/6.3.9600.17400",
-      "hashPath": "system.management.automation_powershell_3.0.6.3.9600.17400.nupkg.sha512"
     },
     "System.Security.AccessControl/4.7.0": {
       "type": "package",
@@ -276,6 +251,11 @@
       "sha512": "sha512-IXoJOXIqc39AIe+CIR7koBtRGMiCt/LPM3lI+PELtDIy9XdyeSrwXFdWV9dzJ2Awl0paLWUaknLxFQ5HpHZUog==",
       "path": "system.windows.extensions/6.0.0",
       "hashPath": "system.windows.extensions.6.0.0.nupkg.sha512"
+    },
+    "AudioDeviceCmdlets/3.1.0.1": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }
