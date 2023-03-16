@@ -2,7 +2,7 @@
 	"Process": {
 		"PriorityDescription": "Idle BelowNormal Normal AboveNormal High RealTime",
 		"Priority": "High",
-		"ProcessorAffinity": 3
+		"ProcessorAffinity": 7
 	},
 	"Control": {
 		"AutoStart": true,
@@ -13,15 +13,15 @@
 			"MinUsage": 10,
 			"MaxUsage": 70,
 			"MinClockFrequencyMHz": 0,
-			"MaxClockFrequencyMHz": 800,
-			"MinFanSpeedLevel": 20,
-			"MaxFanSpeedLevel": 70
+			"MaxClockFrequencyMHz": 1200,
+			"MinFanSpeedLevel": 0,
+			"MaxFanSpeedLevel": 60
 		},
 		"Temperature": {
 			"MinTemperature": 65,
 			"MaxTemperature": 75,
-			"MinFanSpeedLevel": 20,
-			"MaxFanSpeedLevel": 80
+			"MinFanSpeedLevel": 0,
+			"MaxFanSpeedLevel": 70
 		}
 	}
 }

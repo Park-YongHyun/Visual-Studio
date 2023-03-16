@@ -2,14 +2,14 @@
 	"Process": {
 		"PriorityDescription": "Idle BelowNormal Normal AboveNormal High RealTime",
 		"Priority": "High",
-		"ProcessorAffinity": 1
+		"ProcessorAffinity": 3
 	},
 	"Volume": {
-		"StepCount": 50,
+		"StepCount": 80,
 		"Level": {
 			"Calculated": false,
-			"ExponentiationBase": 100,
-			"MinLevel": 0.01,
+			"ExponentiationBase": 2000,
+			"MinLevel": 0.0005,
 			"MaxLevel": 1,
 			"List": []
 		}
@@ -25,7 +25,7 @@
 		"TestBeep": {
 			"UseSystemBeep": false,
 			"Frequency": 100,
-			"DurationMillisec": 400
+			"DurationMillisec": 200
 		}
 	}
 }

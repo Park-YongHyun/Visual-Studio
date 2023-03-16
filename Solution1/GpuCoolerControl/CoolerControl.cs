@@ -11,6 +11,8 @@ namespace GpuCoolerControl
 	{
 		public CoolerControl()
 		{
+			coolerId = Gpu.CoolerInformation.Coolers.FirstOrDefault()!.CoolerId;
+
 			CalculatingTabulation();
 		}
 
@@ -25,6 +27,7 @@ namespace GpuCoolerControl
 		private static CoolerControl _instance; // 싱글턴
 
 		//private int currentFanSpeed = 0;
+		private int coolerId = -1;
 
 		private NvAPIWrapper.GPU.PhysicalGPU _gpu;
 
@@ -61,7 +64,7 @@ namespace GpuCoolerControl
 
 			if (fanSpeedLevel != Gpu.CoolerInformation.CurrentFanSpeedLevel)
 			{
-				Gpu.CoolerInformation.SetCoolerSettings(0, NvAPIWrapper.Native.GPU.CoolerPolicy.Manual, fanSpeedLevel);
+				Gpu.CoolerInformation.SetCoolerSettings(coolerId, NvAPIWrapper.Native.GPU.CoolerPolicy.Manual, fanSpeedLevel);
 			}
 		}
 
@@ -70,6 +73,11 @@ namespace GpuCoolerControl
 		{
 			Config.Usage configGpuUsage = Config.GetRoot.Gpu.Usage;
 			Config.Temperature configGpuTemp = Config.GetRoot.Gpu.Temperature;
+
+			// 팬 최저 속도 에러 방지
+			int fanSpeedDefaultMinLevel = Gpu.CoolerInformation.Coolers.FirstOrDefault()!.DefaultMinimumLevel;
+			configGpuUsage.MinFanSpeedLevel= fanSpeedDefaultMinLevel;
+			configGpuTemp.MinFanSpeedLevel= fanSpeedDefaultMinLevel;
 
 			// 사용량 비례
 			for (int usage = configGpuUsage.MinUsage; usage <= configGpuUsage.MaxUsage; usage++)
