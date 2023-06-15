@@ -10,7 +10,7 @@
 		<local:FileExplorerWindowViewModel />
 	</Window.DataContext>
 	<Grid>
-		<TreeView x:Name="treeView1" ItemsSource="{Binding Path=FileSystemTree}" TreeViewItem.Expanded="treeView1_Expanded" TreeViewItem.Collapsed="treeView1_Collapsed" Loaded="treeView1_Loaded"
+		<TreeView x:Name="treeView1" ItemsSource="{Binding Path=FileSystemTree}" TreeViewItem.Expanded="TreeView1_Expanded" TreeViewItem.Collapsed="TreeView1_Collapsed" Loaded="TreeView1_Loaded"
 				  VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling">
 			<TreeView.Resources>
 				<Style TargetType="TreeViewItem">

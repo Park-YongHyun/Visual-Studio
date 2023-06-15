@@ -40,6 +40,7 @@ namespace SoundControl.Configuration
 		{
 			public int TimeoutMillisec { get; set; }
 			public double WindowOpacity { get; set; }
+			public double SignificantDigits { get; set; }
 		}
 
 		public class Audio

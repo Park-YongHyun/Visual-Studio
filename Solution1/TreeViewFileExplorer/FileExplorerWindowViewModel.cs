@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Threading;
 using TreeViewFileExplorer;
 
 namespace TreeViewFileExplorer
@@ -21,7 +22,7 @@ namespace TreeViewFileExplorer
 			//FileSystemTree.Add(new FileSystemEntryNode("t2"));
 			//FileSystemTree[0].Children.Add(new FileSystemEntryNode("t3"));
 
-			//Test();
+			//GetTreeView();
 		}
 
 		private ICommand _command1;
@@ -38,7 +39,7 @@ namespace TreeViewFileExplorer
 		}
 		private void Command1Exec()
 		{
-			Test();
+			//GetTreeView();
 		}
 
 		/*	파일 시스템 트리
@@ -56,21 +57,20 @@ namespace TreeViewFileExplorer
 		 *		}
 		 *	}
 		 */
-		public void Test()
+		public void GetTreeView(string directoryPath)
 		{
 			ObservableCollection<FileSystemEntryNode> fileSystemTree = FileSystemTree;
+			fileSystemTree.Clear();
 
-			//string sourcePath = @"E:\Temp\etc";
-			string sourcePath = @"D:\Temp";
-			DirectoryInfo sourceDir = new(sourcePath);
+			DirectoryInfo sourceDir = new(directoryPath);
 
 			FileSystemEntryNode rootNode = new(sourceDir.Name, Win32Api.FileSystemIcon.GetIcon(sourceDir.FullName), true);
 			//FileSystemEntryNode rootNode = new(sourceDir.Name, null, true);
 			fileSystemTree.Add(rootNode);
 
-			func1(sourceDir, rootNode);
+			recursivefunc1(sourceDir, rootNode);
 
-			void func1(DirectoryInfo parentDir, FileSystemEntryNode parentNode)
+			void recursivefunc1(DirectoryInfo parentDir, FileSystemEntryNode parentNode)
 			{
 				Debug.WriteLine(parentDir.FullName);
 
@@ -80,7 +80,7 @@ namespace TreeViewFileExplorer
 					//FileSystemEntryNode node = new(subDir.Name, null, true);
 					parentNode.Children.Add(node);
 
-					func1(subDir, node); // 재귀
+					recursivefunc1(subDir, node); // 재귀
 				}
 				foreach (FileInfo subFile in parentDir.EnumerateFiles())
 				{
@@ -92,8 +92,6 @@ namespace TreeViewFileExplorer
 
 			Debug.WriteLine("connecting line");
 			FileSystemEntryNode.RefreshAllConnectingLines(fileSystemTree);
-
-			FileSystemTree = fileSystemTree;
 		}
 	}
 }

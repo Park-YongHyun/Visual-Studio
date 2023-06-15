@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Interop;
 using System.Windows.Threading;
@@ -417,9 +418,27 @@ namespace SoundControl.Model
 			public SwitchDefaultAudioDevice(SoundDevice parent)
 			{
 				this.parent = parent;
+
+				mMDeviceEnumerator.RegisterEndpointNotificationCallback(mMNotificationClient); // 리스너 등록
+
+				mMNotificationClient.SetOnDefaultDeviceChangedProcess(() =>
+				{
+					if (task == null || task.Status == TaskStatus.RanToCompletion)
+					{
+						task = Task.Run(async () =>
+						{
+							await Task.Delay(200);
+							DeviceChenagedProcess();
+						});
+					}
+				});
 			}
 
 			private readonly SoundDevice parent;
+
+			private readonly MMDeviceEnumerator mMDeviceEnumerator = new();
+			private readonly MMNotificationClient mMNotificationClient = new();
+			private Task task;
 
 			/*	기본 재생 장치 변경
 			 *	볼륨 팝업 표시
@@ -458,10 +477,16 @@ namespace SoundControl.Model
 						break;
 					}
 				}
+				
+				return true;
+			}
 
+			public void DeviceChenagedProcess()
+			{
 				// 볼륨 팝업 표시
 				parent.popupControl.ShowPopup();
 
+				// 테스트 비프 소리 재생
 				ConfigData.TestBeep configTestBeep = Config.GetData.Audio.TestBeep;
 
 				if (configTestBeep.UseSystemBeep)
@@ -470,10 +495,8 @@ namespace SoundControl.Model
 				}
 				else
 				{
-					Task.Run(() => Console.Beep(configTestBeep.Frequency, configTestBeep.DurationMillisec));
+					Task.Run(() => Console.Beep(configTestBeep.Frequency, configTestBeep.DurationMillisec)); // Task.Run: 끝날 때까지 멈춤 방지
 				}
-
-				return true;
 			}
 		}
 

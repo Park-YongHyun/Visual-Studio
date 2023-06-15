@@ -16,7 +16,8 @@
 	},
 	"Popup": {
 		"TimeoutMillisec": 1200,
-		"WindowOpacity": 0.75
+		"WindowOpacity": 0.75,
+		"SignificantDigits": 3
 	},
 	"Audio": {
 		"Device1Name": "Speaker",

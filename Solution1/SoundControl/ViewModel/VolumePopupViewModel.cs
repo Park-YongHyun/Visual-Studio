@@ -68,7 +68,7 @@ namespace SoundControl.ViewModel
 		public void OnVolumeChanged(object sender, SoundDevice.VolumeControl.VolumeChangedEventArgs e)
 		{
 			Debug.WriteLine(nameof(OnVolumeChanged));
-			VolumeLevel = decimal.Parse(e.VolumeLevel.ToString("E1"), System.Globalization.NumberStyles.Float); // 정밀도 유효숫자 2
+			VolumeLevel = decimal.Parse(e.VolumeLevel.ToString($"E{Config.GetData.Popup.SignificantDigits - 1}"), System.Globalization.NumberStyles.Float); // 정밀도 유효숫자 E + 1, Ex) E1 = 유효숫자 2
 
 			if (WinVisibility != Visibility.Visible) WinVisibility = Visibility.Visible;
 
