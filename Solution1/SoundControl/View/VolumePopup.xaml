@@ -12,8 +12,11 @@
 	<Window.DataContext>
 		<viewmodel:VolumePopupViewModel/>
 	</Window.DataContext>
-    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Black">
-		<ProgressBar Value="{Binding Path=VolumeLevel}" d:Value="50" Width="20" Height="100" Margin="20,20,20,0" Orientation="Vertical"></ProgressBar>
-		<Label Content="{Binding Path=VolumeLevel}" d:Content="50" FontSize="16" FontFamily="Segoe UI" Foreground="White" HorizontalAlignment="Center" Margin="0,0,0,10"></Label>
-    </StackPanel>
+	<StackPanel Orientation="Vertical" Background="Black">
+		<Label Content="{Binding Path=DeviceName}" d:Content="device name" FontSize="16" FontFamily="Segoe UI" Foreground="White" HorizontalAlignment="Center" Margin="0,5,0,0"></Label>
+		<StackPanel Orientation="Horizontal" Margin="20,0,15,10">
+			<ProgressBar Value="{Binding Path=VolumeLevel}" d:Value="50" Width="100" Height="20" Margin="0,0,10,0"></ProgressBar>
+			<Label Content="{Binding Path=VolumeLevel}" d:Content="000" FontSize="16" FontFamily="Segoe UI" Foreground="White" VerticalAlignment="Center"></Label>
+		</StackPanel>
+	</StackPanel>
 </Window>

@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Interop;
@@ -309,16 +310,18 @@ namespace SoundControl.Model
 
 			public class VolumeChangedEventArgs : EventArgs
 			{
-				public VolumeChangedEventArgs(double volumeLevel)
+				public VolumeChangedEventArgs(string deviceName, double volumeLevel)
 				{
+					DeviceName = deviceName;
 					VolumeLevel = volumeLevel;
 				}
 
+				public string DeviceName { get; }
 				public double VolumeLevel { get; }
 			}
-			public void OnVolumeChanged(double VolumeLevel)
+			public void OnVolumeChanged(string deviceName, double VolumeLevel)
 			{
-				VolumeChanged?.Invoke(null, new VolumeChangedEventArgs(VolumeLevel));
+				VolumeChanged?.Invoke(null, new VolumeChangedEventArgs(deviceName, VolumeLevel));
 			}
 
 			public enum VolumeContolType
@@ -688,11 +691,17 @@ namespace SoundControl.Model
 				// 커스텀 볼륨 팝업 표시
 				public void Show(double volumeLevel = -1)
 				{
+					MMDevice defaultDevice = parent.parent.mMDeviceEnumerator.GetDefaultAudioEndpoint(DataFlow.Render, Role.Console);
+
+					Match m = Regex.Match(defaultDevice.FriendlyName, @".*(?=\((?:(?<group1>\()|[^()]|(?<-group1>\)))*\)$)");
+					string deviceName = m.Value;
+
 					if (volumeLevel < 0)
 					{
-						volumeLevel = parent.parent.mMDeviceEnumerator.GetDefaultAudioEndpoint(DataFlow.Render, Role.Console).AudioEndpointVolume.MasterVolumeLevelScalar;
+						volumeLevel = defaultDevice.AudioEndpointVolume.MasterVolumeLevelScalar;
 					}
-					parent.parent.volumeControl.OnVolumeChanged(volumeLevel * 100);
+
+					parent.parent.volumeControl.OnVolumeChanged(deviceName, volumeLevel * 100);
 				}
 			}
 

@@ -1,32 +1,113 @@
 {
-	"Process": {
-		"PriorityDescription": "Idle BelowNormal Normal AboveNormal High RealTime",
-		"Priority": "High",
-		"ProcessorAffinity": 3
-	},
-	"Volume": {
-		"StepCount": 80,
-		"Level": {
-			"Calculated": false,
-			"ExponentiationBase": 2000,
-			"MinLevel": 0.0005,
-			"MaxLevel": 1,
-			"List": []
-		}
-	},
-	"Popup": {
-		"TimeoutMillisec": 1200,
-		"WindowOpacity": 0.75,
-		"SignificantDigits": 3
-	},
-	"Audio": {
-		"Device1Name": "Speaker",
-		"Device2Name": "Headphone",
-		"UnmuteSystemSound": true,
-		"TestBeep": {
-			"UseSystemBeep": false,
-			"Frequency": 100,
-			"DurationMillisec": 200
-		}
-	}
+  "Process": {
+    "PriorityDescription": "Idle BelowNormal Normal AboveNormal High RealTime",
+    "Priority": "High",
+    "ProcessorAffinity": 3
+  },
+  "Volume": {
+    "StepCount": 80,
+    "Level": {
+      "Calculated": true,
+      "ExponentiationBase": 2000,
+      "MinLevel": 0.0005,
+      "MaxLevel": 1,
+      "List": [
+        0.0005,
+        0.00055,
+        0.000606,
+        0.000667,
+        0.000735,
+        0.000809,
+        0.000891,
+        0.000981,
+        0.00108,
+        0.00119,
+        0.00131,
+        0.00144,
+        0.00159,
+        0.00175,
+        0.00192,
+        0.00212,
+        0.00233,
+        0.00257,
+        0.00283,
+        0.00311,
+        0.00343,
+        0.00377,
+        0.00415,
+        0.00457,
+        0.00503,
+        0.00554,
+        0.0061,
+        0.00672,
+        0.0074,
+        0.00814,
+        0.00896,
+        0.00987,
+        0.0109,
+        0.012,
+        0.0132,
+        0.0145,
+        0.016,
+        0.0176,
+        0.0194,
+        0.0213,
+        0.0235,
+        0.0258,
+        0.0284,
+        0.0313,
+        0.0345,
+        0.038,
+        0.0418,
+        0.046,
+        0.0507,
+        0.0558,
+        0.0614,
+        0.0676,
+        0.0744,
+        0.082,
+        0.0902,
+        0.0993,
+        0.109,
+        0.12,
+        0.133,
+        0.146,
+        0.161,
+        0.177,
+        0.195,
+        0.215,
+        0.236,
+        0.26,
+        0.286,
+        0.315,
+        0.347,
+        0.382,
+        0.421,
+        0.463,
+        0.51,
+        0.561,
+        0.618,
+        0.681,
+        0.749,
+        0.825,
+        0.908,
+        1
+      ]
+    }
+  },
+  "Popup": {
+    "TimeoutMillisec": 1200,
+    "WindowOpacity": 0.75,
+    "SignificantDigits": 3
+  },
+  "Audio": {
+    "Device1Name": "Speaker",
+    "Device2Name": "Headphone",
+    "UnmuteSystemSound": true,
+    "TestBeep": {
+      "UseSystemBeep": false,
+      "Frequency": 100,
+      "DurationMillisec": 100
+    }
+  }
 }

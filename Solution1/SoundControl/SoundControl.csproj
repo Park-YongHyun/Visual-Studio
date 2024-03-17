@@ -32,6 +32,9 @@
     <None Update="Run_SwitchDefaultAudioDevice.cpython-39.pyc.pyw">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Run_SwitchDefaultAudioDevice.pyw">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <ItemGroup>

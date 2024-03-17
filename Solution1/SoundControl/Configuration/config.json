@@ -26,7 +26,7 @@
 		"TestBeep": {
 			"UseSystemBeep": false,
 			"Frequency": 100,
-			"DurationMillisec": 200
+			"DurationMillisec": 100
 		}
 	}
 }
